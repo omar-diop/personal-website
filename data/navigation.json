@@ -1,0 +1,17 @@
+[
+  {
+    "href": "/#about",
+    "prefix": "01.",
+    "label": "Chi sono"
+  },
+  {
+    "href": "/#events",
+    "prefix": "02.",
+    "label": "Eventi"
+  },
+  {
+    "href": "/#contents",
+    "prefix": "03.",
+    "label": "Contenuti"
+  }
+]

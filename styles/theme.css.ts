@@ -1,4 +1,4 @@
-import { createGlobalTheme } from "@vanilla-extract/css";
+import { createGlobalTheme } from "@vanilla-extract/css"
 
 export const theme = createGlobalTheme(":root", {
   space: {
@@ -29,10 +29,16 @@ export const theme = createGlobalTheme(":root", {
     medium: "1.25rem",
     large: "2.25rem",
   },
+  fontWeight: {
+    regular: "400",
+    semiBold: "500",
+    bold: "700",
+  },
   lineHeight: {
     small: "1.5rem",
     medium: "1.75rem",
     large: "2.5rem",
   },
   borderRadius: "4px",
-});
+  transition: "all 0.25s cubic-bezier(0.645,0.045,0.355,1)",
+})

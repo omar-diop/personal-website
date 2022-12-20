@@ -42,6 +42,7 @@ export const list = style({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
+  marginRight: theme.space.large,
 })
 
 export const link = style({

@@ -1,6 +1,7 @@
 import * as style from "./navBar.css"
 import Link from "next/link"
 import navigationLinks from "../../data/navigation.json"
+import { CallToAction } from "../CallToAction"
 
 const Logo = () => (
   <div className={style.logo}>
@@ -26,6 +27,11 @@ export function NavBar() {
               </li>
             ))}
           </ol>
+          <CallToAction
+            text="Contatti"
+            link="mailto:info@omardiop.com"
+            size="small"
+          />
         </div>
       </nav>
     </header>

@@ -7,6 +7,7 @@ import type { AppProps } from "next/app"
 
 import { NavBar } from "../components/NavBar"
 import { Footer } from "../components/Footer"
+import { Socials } from "../components/Socials"
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -20,6 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <main className={style.main}>
         <Component {...pageProps} />
       </main>
+      <Socials />
       <Footer />
     </div>
   )

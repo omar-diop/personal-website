@@ -11,7 +11,7 @@ export const gradient = style({
   height: "500px",
   animationName: rotate,
   animationDuration: "30s",
-  animationDirection: "alternate",
+  animationDirection: "normal",
   animationIterationCount: "infinite",
   animationTimingFunction: theme.transition,
   filter: "blur(100px)",
@@ -28,5 +28,5 @@ export const background = style({
   left: 0,
   width: "100%",
   height: "100%",
-  zIndex: 0,
+  zIndex: -1,
 })

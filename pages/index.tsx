@@ -1,11 +1,20 @@
 import { GradientBackground } from "../components/GradientBackground"
+import { CallToAction } from "../components/CallToAction"
 import * as style from "../styles/home.css"
 
 export default function Home() {
   return (
     <>
       <section className={style.heroSection}>
-        <h1>Omar Diop</h1>
+        <div className={style.nameContainer}>
+          <h1 className={style.preText}>Ciao, mi chiamo</h1>
+          <h2 className={style.nameText}>Omar Diop.</h2>
+          <h2 className={style.nameText} style={{ marginBottom: "2rem" }}>
+            Scrivo codice_
+          </h2>
+          <CallToAction text="Scopri di più" link="#about" size="big" />
+        </div>
+
         <GradientBackground />
       </section>
       <section className={style.section}>

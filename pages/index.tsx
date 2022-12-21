@@ -1,10 +1,12 @@
+import { GradientBackground } from "../components/GradientBackground"
 import * as style from "../styles/home.css"
 
 export default function Home() {
   return (
     <>
       <section className={style.heroSection}>
-        <p>Hero</p>
+        <h1>Omar Diop</h1>
+        <GradientBackground />
       </section>
       <section className={style.section}>
         <p>01. Chi sono</p>

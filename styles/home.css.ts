@@ -1,4 +1,5 @@
-import { style } from "@vanilla-extract/css"
+import { style, keyframes } from "@vanilla-extract/css"
+import { theme } from "./theme.css"
 
 export const section = style({
   display: "flex",
@@ -11,10 +12,12 @@ export const section = style({
 })
 
 export const heroSection = style({
+  position: "relative",
   display: "flex",
-  justifyContent: "center",
+  justifyContent: "flex-start",
   flexDirection: "row",
-  alignItems: "flex-start",
+  alignItems: "center",
   minHeight: "100vh",
   padding: "0px",
+  zIndex: 1,
 })

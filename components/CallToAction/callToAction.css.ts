@@ -1,6 +1,5 @@
-import { style } from "@vanilla-extract/css"
+import { style, styleVariants } from "@vanilla-extract/css"
 import { theme } from "../../styles/theme.css"
-import { styleVariants } from "@vanilla-extract/css"
 
 const base = style({
   color: theme.colors.primary,

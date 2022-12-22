@@ -1,14 +1,10 @@
-import { style, keyframes } from "@vanilla-extract/css"
+import { style, styleVariants } from "@vanilla-extract/css"
 import { theme } from "./theme.css"
 
 export const section = style({
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "center",
-  margin: "100px auto",
+  margin: "0px auto",
   padding: "100px 0px",
   maxWidth: "1000px",
-  backgroundColor: "grey",
 })
 
 export const heroSection = style({
@@ -42,4 +38,38 @@ export const preText = style({
   fontSize: theme.fontSize.medium,
   margin: 0,
   marginBottom: theme.space.medium,
+})
+
+export const aboutContainer = style({
+  display: "grid",
+  gridTemplateColumns: "3fr 2fr",
+  gap: "50px",
+  minHeight: "300px", //Remove
+})
+
+const baseSectionInner = style({
+  display: "flex",
+  flexDirection: "column",
+  minHeight: "300px", //Remove
+})
+
+export const sectionInner = styleVariants({
+  leftAlign: [
+    baseSectionInner,
+    {
+      alignItems: "flex-start",
+    },
+  ],
+  centerAlign: [
+    baseSectionInner,
+    {
+      alignItems: "center",
+    },
+  ],
+  rightAlign: [
+    baseSectionInner,
+    {
+      alignItems: "flex-end",
+    },
+  ],
 })

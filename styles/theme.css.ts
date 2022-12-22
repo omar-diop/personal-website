@@ -6,6 +6,7 @@ export const theme = createGlobalTheme(":root", {
     small: "0.25rem",
     medium: "0.5rem",
     large: "1rem",
+    extraLarge: "2rem",
   },
   fonts: {
     sans: "Roboto, sans-serif",

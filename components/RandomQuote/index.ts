@@ -1,0 +1,1 @@
+export { RandomQuote } from "./RandomQuote"

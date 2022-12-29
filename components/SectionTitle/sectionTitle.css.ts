@@ -5,6 +5,7 @@ export const container = style({
   display: "flex",
   alignItems: "center",
   flex: 1,
+  marginBottom: theme.space.extraLarge,
 })
 
 export const textContainer = styleVariants({

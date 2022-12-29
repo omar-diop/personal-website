@@ -41,10 +41,12 @@ export const preText = style({
 })
 
 export const aboutContainer = style({
+  position: "relative",
   display: "grid",
   gridTemplateColumns: "3fr 2fr",
   gap: "50px",
-  minHeight: "300px", //Remove
+  lineHeight: theme.lineHeight.small,
+  fontSize: theme.fontSize.small,
 })
 
 const baseSectionInner = style({
@@ -72,4 +74,15 @@ export const sectionInner = styleVariants({
       alignItems: "flex-end",
     },
   ],
+})
+
+export const imageContainer = style({
+  position: "relative",
+  maxWidth: "300px",
+})
+
+export const profileImage = style({
+  borderRadius: "4px",
+  objectFit: "cover",
+  objectPosition: "center",
 })

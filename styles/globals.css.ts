@@ -14,6 +14,11 @@ globalStyle("a", {
   textDecoration: "none",
 })
 
+globalStyle("strong", {
+  color: theme.colors.primary,
+  fontWeight: theme.fontWeight.bold,
+})
+
 globalStyle("*", {
   boxSizing: "border-box",
 })

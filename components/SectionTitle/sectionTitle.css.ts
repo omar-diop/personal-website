@@ -2,10 +2,14 @@ import { style, styleVariants } from "@vanilla-extract/css"
 import { theme } from "../../styles/theme.css"
 
 export const container = style({
+  marginBottom: theme.space.extraLarge,
+})
+
+export const inner = style({
   display: "flex",
   alignItems: "center",
   flex: 1,
-  marginBottom: theme.space.extraLarge,
+  marginBottom: theme.space.large,
 })
 
 export const textContainer = styleVariants({

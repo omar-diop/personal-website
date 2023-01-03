@@ -17,7 +17,7 @@ export default function Home() {
         </div>
         <GradientBackground />
       </section>
-      <section className={style.section}>
+      <section className={style.section} id="about">
         <div className={style.aboutContainer}>
           <div>
             <SectionTitle number="01." title="Chi sono" align="left" />
@@ -45,11 +45,7 @@ export default function Home() {
               src="/images/profile.jpg"
               alt="Omar Diop @Learnn Talks 2022, Rome"
               fill={true}
-              style={{
-                borderRadius: "4px",
-                objectFit: "cover",
-                objectPosition: "center",
-              }}
+              className={style.profileImage}
             />
           </div>
         </div>

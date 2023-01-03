@@ -78,11 +78,23 @@ export const sectionInner = styleVariants({
 
 export const imageContainer = style({
   position: "relative",
-  maxWidth: "300px",
+  maxWidth: "270px",
+  "::after": {
+    border: `2px solid ${theme.colors.primary}`,
+    top: `-25px`,
+    left: "25px",
+    display: "block",
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    borderRadius: theme.borderRadius,
+    content: "",
+  },
 })
 
 export const profileImage = style({
-  borderRadius: "4px",
+  borderRadius: theme.borderRadius,
   objectFit: "cover",
   objectPosition: "center",
+  zIndex: 100,
 })

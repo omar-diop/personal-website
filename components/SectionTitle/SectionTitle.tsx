@@ -13,8 +13,8 @@ export function SectionTitle({
   subtitle,
 }: ISectionTitle) {
   return (
-    <div>
-      <div className={style.container}>
+    <div className={style.container}>
+      <div className={style.inner}>
         {align === "center" && <div className={style.line} />}
         <div className={style.textContainer[align]}>
           <span className={style.number}>{number}</span>

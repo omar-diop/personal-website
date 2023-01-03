@@ -3,6 +3,7 @@ import { createGlobalTheme } from "@vanilla-extract/css"
 export const theme = createGlobalTheme(":root", {
   space: {
     none: "0",
+    extraSmall: "0.15rem",
     small: "0.25rem",
     medium: "0.5rem",
     large: "1rem",
@@ -19,6 +20,7 @@ export const theme = createGlobalTheme(":root", {
     blue: "#56A1FF",
     red: "#FF703B",
     grey: "rgba(169,169,169,0.4)",
+    darkGrey: "#262626",
     text: {
       normal: "#ffffff",
       dimmed: "#A9A9A9",

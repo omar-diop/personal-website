@@ -2,7 +2,9 @@ import { GradientBackground } from "../components/GradientBackground"
 import { CallToAction } from "../components/CallToAction"
 import { RandomQuote } from "../components/RandomQuote"
 import * as style from "../styles/home.css"
+import { Talks } from "../components/Talks"
 import { SectionTitle } from "../components/SectionTitle"
+
 import Image from "next/image"
 
 export default function Home() {
@@ -58,8 +60,9 @@ export default function Home() {
             align="center"
             subtitle="Tutti gli eventi ai quali partecipo o in cui ho parlato."
           />
+          <Talks />
           <CallToAction
-            text="Contattami"
+            text="Vuoi invitarmi? Scrivimi!"
             link="mailto:accounts@omardiop.com"
             size="small"
           />

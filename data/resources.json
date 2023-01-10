@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Learnn: il ruolo della tecnologia nel design e nello sviluppo di un prodotto",
+    "description": "Come la tecnologia può essere utilizzata come mezzo per realizzare un prodotto che risponda alle necessità degli utenti",
+    "imageUrl": "/images/placeholder.jpg",
+    "link": "https://medium.com",
+    "type": "Blog post",
+    "tags": ["Product development", "Agile", "React", "AWS", "Streaming"]
+  },
+  {
+    "title": "Come convertire un componente rect in un’immagine scaricabile",
+    "description": "In questa guida vedremo come convertire un componente react in un'immagine scaricabile.",
+    "imageUrl": "/images/placeholder.jpg",
+    "link": "https://medium.com",
+    "type": "Guida",
+    "tags": ["React", "Puppeteer", "Aws Lambda"]
+  },
+  {
+    "title": "Generare un video dinamico in Javascript",
+    "description": "Il wrapped di Spotify? Nessun problema, ti mostro come generarlo.",
+    "imageUrl": "/images/placeholder.jpg",
+    "link": "https://medium.com",
+    "type": "Blog post",
+    "tags": ["Wrapped", "Video JS", "React", "AWS", "Lambda"]
+  }
+]

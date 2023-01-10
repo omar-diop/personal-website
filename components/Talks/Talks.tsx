@@ -17,7 +17,7 @@ export function Talks() {
         {talks
           .sort((a, b) => compareDesc(a.date, b.date))
           .map((talk) => (
-            <div className={style.talk}>
+            <div className={style.talk} key={talk.title}>
               <div className={style.listItem}>{">"}</div>
               <div>
                 <div className={style.date}>

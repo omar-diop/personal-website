@@ -4,8 +4,9 @@ import { RandomQuote } from "../components/RandomQuote"
 import * as style from "../styles/home.css"
 import { Talks } from "../components/Talks"
 import { SectionTitle } from "../components/SectionTitle"
-
+import resources from "../data/resources.json"
 import Image from "next/image"
+import { Resource } from "../components/Resource"
 
 export default function Home() {
   return (
@@ -76,6 +77,13 @@ export default function Home() {
             align="left"
             subtitle="Tutti i miei contenuti e le mie risorse tecniche"
           />
+          {resources.map((resource, i) => (
+            <Resource
+              key={resource.title}
+              {...resource}
+              align={i % 2 === 0 ? "left" : "right"}
+            />
+          ))}
         </div>
       </section>
       <section className={style.section}>

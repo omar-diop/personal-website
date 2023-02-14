@@ -5,6 +5,7 @@ import * as style from "../styles/home.css"
 import { Talks } from "../components/Talks"
 import { SectionTitle } from "../components/SectionTitle"
 import resources from "../data/resources.json"
+import links from "../data/links.json"
 import Image from "next/image"
 import { Resource } from "../components/Resource"
 
@@ -16,7 +17,7 @@ export default function Home() {
           <h1 className={style.preText}>Ciao, mi chiamo</h1>
           <h2 className={style.nameText}>Omar Diop</h2>
           <RandomQuote />
-          <CallToAction text="Scopri di più" link="#about" size="big" />
+          <CallToAction text="Scopri di più" link="#about" type="primary_big" />
         </div>
         <GradientBackground />
       </section>
@@ -53,7 +54,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className={style.section}>
+      <section className={style.section} id="events">
         <div className={style.sectionInner["centerAlign"]}>
           <SectionTitle
             number="02."
@@ -65,11 +66,11 @@ export default function Home() {
           <CallToAction
             text="Vuoi invitarmi? Scrivimi!"
             link="mailto:accounts@omardiop.com"
-            size="small"
+            type="primary_small"
           />
         </div>
       </section>
-      <section className={style.section}>
+      <section className={style.section} id="contents">
         <div className={style.sectionInner["leftAlign"]}>
           <SectionTitle
             number="03."
@@ -88,7 +89,28 @@ export default function Home() {
       </section>
       <section className={style.section}>
         <div className={style.sectionInner["centerAlign"]}>
-          <SectionTitle number="04." title="A te la scelta" align="center" />
+          <SectionTitle number="04." title="A te la scelta *" align="center" />
+          <div className={style.pillText}>
+            You take the blue pill - the story ends.
+          </div>
+          <div className={style.pillText}>
+            You take the red pill - you contact me.
+          </div>
+          <div className={style.pillsContainer}>
+            <CallToAction text="Pillola blu" link="" type="blue_big" />
+            <CallToAction
+              text="Pillola rossa"
+              link="mailto:info@omardiop.com"
+              type="red_big"
+              style={{ marginLeft: "1.5rem" }}
+            />
+          </div>
+          <p className={style.pillsPs}>
+            * se non conosci la reference ti consiglio subito di{" "}
+            <a className={style.pillsLink} href={links.martrix} target="_blank">
+              rimediare.
+            </a>
+          </p>
         </div>
       </section>
     </>

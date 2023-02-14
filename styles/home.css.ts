@@ -49,6 +49,28 @@ export const aboutContainer = style({
   fontSize: theme.fontSize.small,
 })
 
+export const pillText = style({
+  fontFamily: theme.fonts.monospace,
+  marginBottom: theme.space.medium,
+})
+
+export const pillsContainer = style({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  marginTop: theme.space.extraLarge,
+  marginBottom: theme.space.extraLarge,
+})
+
+export const pillsPs = style({
+  fontSize: theme.fontSize.extraSmall,
+})
+
+export const pillsLink = style({
+  fontSize: theme.fontSize.extraSmall,
+  color: theme.colors.primary,
+})
+
 const baseSectionInner = style({
   display: "flex",
   flexDirection: "column",

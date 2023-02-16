@@ -10,7 +10,7 @@ export const gradient = style({
   width: "500px",
   height: "500px",
   animationName: rotate,
-  animationDuration: "30s",
+  animationDuration: "25s",
   animationDirection: "normal",
   animationIterationCount: "infinite",
   animationTimingFunction: theme.transition,

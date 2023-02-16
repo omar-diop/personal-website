@@ -5,8 +5,9 @@ const base = style({
   fontFamily: theme.fonts.monospace,
   fontWeight: theme.fontWeight.regular,
   borderRadius: theme.borderRadius,
-
   transition: theme.transition,
+  cursor: "pointer",
+  backgroundColor: "transparent",
 })
 
 export const button = styleVariants({

@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react"
 import { GradientBackground } from "../components/GradientBackground"
 import { CallToAction } from "../components/CallToAction"
 import { RandomQuote } from "../components/RandomQuote"
@@ -8,8 +9,19 @@ import resources from "../data/resources.json"
 import links from "../data/links.json"
 import Image from "next/image"
 import { Resource } from "../components/Resource"
+import { DigitalRain, DefaultDuration } from "../components/DigitalRain"
 
 export default function Home() {
+  const [matrixVisible, toggleMatrix] = useState(false)
+
+  useEffect(() => {
+    if (!matrixVisible) return
+    const timer = setTimeout(() => {
+      toggleMatrix(false)
+    }, DefaultDuration)
+    return () => clearTimeout(timer)
+  }, [matrixVisible])
+
   return (
     <>
       <section className={style.heroSection}>
@@ -17,7 +29,12 @@ export default function Home() {
           <h1 className={style.preText}>Ciao, mi chiamo</h1>
           <h2 className={style.nameText}>Omar Diop</h2>
           <RandomQuote />
-          <CallToAction text="Scopri di più" link="#about" type="primary_big" />
+          <CallToAction
+            text="Scopri di più"
+            link="#about"
+            type="primary_big"
+            mode="link"
+          />
         </div>
         <GradientBackground />
       </section>
@@ -67,6 +84,7 @@ export default function Home() {
             text="Vuoi invitarmi? Scrivimi!"
             link="mailto:accounts@omardiop.com"
             type="primary_small"
+            mode="link"
           />
         </div>
       </section>
@@ -97,12 +115,18 @@ export default function Home() {
             You take the red pill - you contact me.
           </div>
           <div className={style.pillsContainer}>
-            <CallToAction text="Pillola blu" link="" type="blue_big" />
+            <CallToAction
+              text="Pillola blu"
+              type="blue_big"
+              onClick={() => toggleMatrix(true)}
+              mode="button"
+            />
             <CallToAction
               text="Pillola rossa"
               link="mailto:info@omardiop.com"
               type="red_big"
               style={{ marginLeft: "1.5rem" }}
+              mode="link"
             />
           </div>
           <p className={style.pillsPs}>
@@ -113,6 +137,7 @@ export default function Home() {
           </p>
         </div>
       </section>
+      {matrixVisible ? <DigitalRain /> : null}
     </>
   )
 }

@@ -30,7 +30,8 @@ export function NavBar() {
           <CallToAction
             text="Contatti"
             link="mailto:info@omardiop.com"
-            size="small"
+            type="primary_big"
+            mode="link"
           />
         </div>
       </nav>

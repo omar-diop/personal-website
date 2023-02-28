@@ -3,6 +3,11 @@ import { theme } from "../../styles/theme.css"
 
 export const container = style({
   marginBottom: theme.space.extraLarge,
+  "@media": {
+    "screen and (max-width: 768px)": {
+      width: "100%",
+    },
+  },
 })
 
 export const inner = style({
@@ -29,7 +34,13 @@ export const textContainer = styleVariants({
 export const title = style({
   color: theme.colors.text.normal,
   fontSize: "1.8rem",
+  whiteSpace: "nowrap",
   margin: 0,
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: "1.5rem",
+    },
+  },
 })
 
 export const number = style({
@@ -43,6 +54,11 @@ export const line = style({
   height: "1px",
   width: "280px",
   backgroundColor: theme.colors.grey,
+  "@media": {
+    "screen and (max-width: 768px)": {
+      width: "100%",
+    },
+  },
 })
 
 export const subtitle = styleVariants({

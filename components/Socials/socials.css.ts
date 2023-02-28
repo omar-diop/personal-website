@@ -20,10 +20,21 @@ export const container = style({
     marginTop: theme.space.medium,
     backgroundColor: theme.colors.grey,
   },
+  "@media": {
+    "screen and (max-width: 768px)": {
+      display: "none",
+    },
+  },
 })
 
 export const link = style({
   padding: theme.space.medium,
+  paddingLeft: theme.space.large,
+  paddingRight: theme.space.large,
+  transition: theme.transition,
+  ":hover": {
+    transform: "scale(1.1)",
+  },
 })
 
 export const icon = style({
@@ -33,6 +44,5 @@ export const icon = style({
   transition: theme.transition,
   ":hover": {
     color: theme.colors.primary,
-    transform: "scale(1.1)",
   },
 })

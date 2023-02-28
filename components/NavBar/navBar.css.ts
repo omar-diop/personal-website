@@ -9,6 +9,14 @@ export const header = style({
   alignItems: "center",
   justifyContent: "space-between",
   backgroundColor: theme.colors.background,
+  "@media": {
+    "screen and (max-width:768px)": {
+      padding: " 0px 40px",
+    },
+    "screen and (max-width:576px)": {
+      padding: " 0px 25px",
+    },
+  },
 })
 
 export const nav = style({
@@ -21,6 +29,11 @@ export const nav = style({
   fontFamily: theme.fonts.monospace,
   fontSize: theme.fontSize.small,
   fontWeight: theme.fontWeight.regular,
+  "@media": {
+    "screen and (max-width: 992px)": {
+      fontSize: theme.fontSize.extraSmall,
+    },
+  },
 })
 
 export const logo = style({
@@ -28,11 +41,21 @@ export const logo = style({
   fontFamily: theme.fonts.sans,
   fontWeight: theme.fontWeight.bold,
   color: theme.colors.text.normal,
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: theme.fontSize.small,
+    },
+  },
 })
 
 export const links = style({
   display: "flex",
   alignItems: "center",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      display: "none",
+    },
+  },
 })
 
 export const list = style({

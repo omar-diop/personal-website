@@ -5,6 +5,11 @@ export const section = style({
   margin: "0px auto",
   padding: "100px 0px",
   maxWidth: "1000px",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      padding: "80px 0px",
+    },
+  },
 })
 
 export const heroSection = style({
@@ -29,6 +34,15 @@ export const nameText = style({
   fontWeight: theme.fontWeight.bold,
   fontSize: "4.5rem",
   margin: 0,
+  "@media": {
+    "screen and (max-width: 992px)": {
+      fontSize: "3.5rem",
+    },
+    "screen and (max-width: 768px)": {
+      fontSize: "2.8rem",
+      marginBottom: theme.space.medium,
+    },
+  },
 })
 
 export const preText = style({
@@ -38,6 +52,11 @@ export const preText = style({
   fontSize: theme.fontSize.medium,
   margin: 0,
   marginBottom: theme.space.medium,
+  "@media": {
+    "screen and (max-width: 768px)": {
+      fontSize: theme.fontSize.small,
+    },
+  },
 })
 
 export const aboutContainer = style({
@@ -47,11 +66,18 @@ export const aboutContainer = style({
   gap: "50px",
   lineHeight: theme.lineHeight.small,
   fontSize: theme.fontSize.small,
+  "@media": {
+    "screen and (max-width: 768px)": {
+      display: "flex",
+      flexDirection: "column",
+    },
+  },
 })
 
 export const pillText = style({
   fontFamily: theme.fonts.monospace,
   marginBottom: theme.space.medium,
+  textAlign: "center",
 })
 
 export const pillsContainer = style({
@@ -64,6 +90,7 @@ export const pillsContainer = style({
 
 export const pillsPs = style({
   fontSize: theme.fontSize.extraSmall,
+  textAlign: "center",
 })
 
 export const pillsLink = style({
@@ -111,6 +138,17 @@ export const imageContainer = style({
     height: "100%",
     borderRadius: theme.borderRadius,
     content: "",
+  },
+  "@media": {
+    "screen and (max-width: 768px)": {
+      height: "300px",
+      width: "300px",
+      margin: "0 auto",
+    },
+    "screen and (max-width:576px)": {
+      height: "270px",
+      width: "250px",
+    },
   },
 })
 

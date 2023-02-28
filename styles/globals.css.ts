@@ -7,6 +7,7 @@ globalStyle("html, body", {
   fontFamily: theme.fonts.sans,
   background: theme.colors.background,
   color: theme.colors.text.dimmed,
+  overflowX: "hidden",
 })
 
 globalStyle("a", {
@@ -34,4 +35,15 @@ export const main = style({
   width: "100%",
   minHeight: "100vh",
   padding: "0px 150px",
+  "@media": {
+    "screen and (max-width: 992px)": {
+      padding: "0px 100px",
+    },
+    "screen and (max-width: 768px)": {
+      padding: "0px 40px",
+    },
+    "screen and (max-width:576px)": {
+      padding: "0px 25px",
+    },
+  },
 })

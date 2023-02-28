@@ -18,6 +18,12 @@ export const talksList = style({
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
+  "@media": {
+    "screen and (max-width: 1200px)": {
+      width: "100%",
+      minWidth: "400px",
+    },
+  },
 })
 
 export const image = style({

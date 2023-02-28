@@ -30,6 +30,17 @@ export const text = style({
   whiteSpace: "nowrap",
   animation: `${typing} 5s steps(7) infinite ,${cursor} 0.7s  infinite`,
   animationFillMode: "forwards",
+  "@media": {
+    "screen and (max-width: 992px)": {
+      fontSize: "2.5rem",
+    },
+    "screen and (max-width: 768px)": {
+      fontSize: "2rem",
+    },
+    "screen and (max-width: 576px)": {
+      fontSize: "1.6rem",
+    },
+  },
 })
 
 export const terminal = style({
@@ -44,4 +55,12 @@ export const symbol = style({
   fontWeight: theme.fontWeight.bold,
   whiteSpace: "nowrap",
   marginRight: theme.space.medium,
+  "@media": {
+    "screen and (max-width: 992px)": {
+      fontSize: "2.5rem",
+    },
+    "screen and (max-width: 768px)": {
+      fontSize: "2rem",
+    },
+  },
 })

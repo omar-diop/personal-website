@@ -39,6 +39,7 @@ export const text = style({
     },
     "screen and (max-width: 576px)": {
       fontSize: "1.6rem",
+      fontWeight: theme.fontWeight.regular,
     },
   },
 })

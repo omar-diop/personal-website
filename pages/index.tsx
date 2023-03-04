@@ -61,10 +61,18 @@ export default function Home() {
               nisi ut aliquip ex ea commodo consequat.
             </p>
           </div>
-          <div className={style.imageContainer}>
+          <div className={style.imageContainer["desktop"]}>
             <Image
               src="/images/profile.jpg"
               alt="Omar Diop @Learnn Talks 2022, Rome"
+              fill={true}
+              className={style.profileImage}
+            />
+          </div>
+          <div className={style.imageContainer["mobile"]}>
+            <Image
+              src="/images/talks.jpg"
+              alt="Omar Diop @Learnn Talks 2022, Milan"
               fill={true}
               className={style.profileImage}
             />

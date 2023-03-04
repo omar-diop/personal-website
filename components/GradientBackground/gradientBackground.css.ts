@@ -17,6 +17,14 @@ export const gradient = style({
   filter: "blur(100px)",
   backgroundImage: `linear-gradient(rgba(0, 227, 169,0.80),#0086DE)`,
   borderRadius: "30% 70% 70% 30%/30% 30% 70% 70%",
+  "@media": {
+    "screen and (max-width:576px)": {
+      height: "250px",
+      width: "250px",
+      filter: "blur(60px)",
+      animationDuration: "20s",
+    },
+  },
 })
 
 export const background = style({
@@ -29,4 +37,9 @@ export const background = style({
   width: "100%",
   height: "100%",
   zIndex: -1,
+  "@media": {
+    "screen and (max-width:576px)": {
+      justifyContent: "center",
+    },
+  },
 })

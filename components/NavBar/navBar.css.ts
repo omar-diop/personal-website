@@ -3,6 +3,7 @@ import { theme } from "../../styles/theme.css"
 
 export const header = style({
   padding: " 0px 50px",
+  position: "fixed",
   width: "100%",
   height: "100px",
   display: "flex",

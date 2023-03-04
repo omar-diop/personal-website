@@ -23,6 +23,13 @@ export const talksList = style({
       width: "100%",
       minWidth: "400px",
     },
+    "screen and (max-width: 576px)": {
+      width: "100%",
+      maxWidth: "100%",
+      minWidth: "100%",
+      marginLeft: 0,
+      padding: "1.5rem",
+    },
   },
 })
 
@@ -30,6 +37,11 @@ export const image = style({
   objectFit: "cover",
   borderRadius: theme.borderRadius,
   zIndex: 100,
+  "@media": {
+    "screen and (max-width: 576px)": {
+      display: "none",
+    },
+  },
 })
 
 export const talk = style({

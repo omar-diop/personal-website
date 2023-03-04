@@ -18,9 +18,14 @@ export const heroSection = style({
   justifyContent: "flex-start",
   flexDirection: "row",
   alignItems: "center",
-  minHeight: "90vh",
+  minHeight: "105vh",
   padding: "0px",
   zIndex: 100,
+  "@media": {
+    "screen and (max-width:576px)": {
+      minHeight: "100vh",
+    },
+  },
 })
 
 export const nameContainer = style({
@@ -125,7 +130,7 @@ export const sectionInner = styleVariants({
   ],
 })
 
-export const imageContainer = style({
+const baseImageContainer = style({
   position: "relative",
   maxWidth: "270px",
   "::after": {
@@ -139,17 +144,38 @@ export const imageContainer = style({
     borderRadius: theme.borderRadius,
     content: "",
   },
-  "@media": {
-    "screen and (max-width: 768px)": {
-      height: "300px",
-      width: "300px",
-      margin: "0 auto",
+})
+
+export const imageContainer = styleVariants({
+  mobile: [
+    baseImageContainer,
+    {
+      display: "none",
+      "@media": {
+        "screen and (max-width:576px)": {
+          height: "300px",
+          width: "250px",
+          display: "block",
+          margin: "0 auto",
+        },
+      },
     },
-    "screen and (max-width:576px)": {
-      height: "270px",
-      width: "250px",
+  ],
+  desktop: [
+    baseImageContainer,
+    {
+      "@media": {
+        "screen and (max-width: 768px)": {
+          height: "300px",
+          width: "300px",
+          margin: "0 auto",
+        },
+        "screen and (max-width:576px)": {
+          display: "none",
+        },
+      },
     },
-  },
+  ],
 })
 
 export const profileImage = style({

@@ -133,6 +133,7 @@ export const sectionInner = styleVariants({
 const baseImageContainer = style({
   position: "relative",
   maxWidth: "270px",
+  boxShadow: theme.boxShadow,
   "::after": {
     border: `2px solid ${theme.colors.primary}`,
     top: `-25px`,

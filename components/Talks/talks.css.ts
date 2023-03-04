@@ -18,6 +18,7 @@ export const talksList = style({
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
+  boxShadow: theme.boxShadow,
   "@media": {
     "screen and (max-width: 1200px)": {
       width: "100%",
@@ -36,6 +37,7 @@ export const talksList = style({
 export const image = style({
   objectFit: "cover",
   borderRadius: theme.borderRadius,
+  boxShadow: theme.boxShadow,
   zIndex: 100,
   "@media": {
     "screen and (max-width: 576px)": {

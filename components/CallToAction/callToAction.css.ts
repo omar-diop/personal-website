@@ -51,6 +51,14 @@ export const button = styleVariants({
       fontSize: theme.fontSize.medium,
       padding: "1rem 2rem",
       lineHeight: theme.fontSize.medium,
+      "@media": {
+        "screen and (max-width: 576px)": {
+          fontSize: theme.fontSize.small,
+          padding: "1rem",
+          textAlign: "center",
+          lineHeight: "1.5rem",
+        },
+      },
     },
   ],
   blue_big: [
@@ -65,6 +73,14 @@ export const button = styleVariants({
       fontSize: theme.fontSize.medium,
       padding: "1rem 2rem",
       lineHeight: theme.fontSize.medium,
+      "@media": {
+        "screen and (max-width: 576px)": {
+          fontSize: theme.fontSize.small,
+          padding: "1rem",
+          textAlign: "center",
+          lineHeight: "1.5rem",
+        },
+      },
     },
   ],
 })

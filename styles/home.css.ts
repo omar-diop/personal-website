@@ -83,6 +83,11 @@ export const pillText = style({
   fontFamily: theme.fonts.monospace,
   marginBottom: theme.space.medium,
   textAlign: "center",
+  "@media": {
+    "screen and (max-width: 576px)": {
+      fontSize: "0.9rem",
+    },
+  },
 })
 
 export const pillsContainer = style({
@@ -95,6 +100,7 @@ export const pillsContainer = style({
 
 export const pillsPs = style({
   fontSize: theme.fontSize.extraSmall,
+  lineHeight: "1.5rem",
   textAlign: "center",
 })
 

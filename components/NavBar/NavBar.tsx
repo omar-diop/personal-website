@@ -2,6 +2,7 @@ import * as style from "./navBar.css"
 import Link from "next/link"
 import navigationLinks from "../../data/navigation.json"
 import { CallToAction } from "../CallToAction"
+import useScroll from "../../utils/useScroll"
 
 const Logo = () => (
   <div className={style.logo}>
@@ -12,8 +13,12 @@ const Logo = () => (
 )
 
 export function NavBar() {
+  const { direction, scrolledToTop } = useScroll()
+
   return (
-    <header className={style.header}>
+    <header
+      className={scrolledToTop ? style.header["top"] : style.header[direction]}
+    >
       <nav className={style.nav}>
         <Logo />
         <div className={style.links}>
@@ -28,7 +33,7 @@ export function NavBar() {
             ))}
           </ol>
           <CallToAction
-            text="Contatti"
+            text={"Contatti"}
             link="mailto:info@omardiop.com"
             type="primary_big"
             mode="link"

@@ -1,23 +1,57 @@
-import { style } from "@vanilla-extract/css"
+import { style, styleVariants } from "@vanilla-extract/css"
 import { theme } from "../../styles/theme.css"
 
-export const header = style({
+const HEADER_HEIGHT = 100
+const MOBILE_HEADER_HEIGHT = 70
+
+const base = style({
   padding: " 0px 50px",
   position: "fixed",
+  top: 0,
   width: "100%",
-  height: "100px",
+  height: `${HEADER_HEIGHT}px`,
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  backgroundColor: theme.colors.background,
+  transition: theme.transition,
   "@media": {
     "screen and (max-width:768px)": {
       padding: " 0px 40px",
     },
     "screen and (max-width:576px)": {
       padding: " 0px 25px",
+      height: `${MOBILE_HEADER_HEIGHT}px`,
     },
   },
+})
+
+export const header = styleVariants({
+  top: [base],
+  up: [
+    base,
+    {
+      transform: "translateY(0px)",
+      zIndex: 101,
+      backgroundColor: "rgba(12,12,12,0.80)",
+      backdropFilter: "blur(10px)",
+      boxShadow: theme.boxShadow,
+    },
+  ],
+  down: [
+    base,
+    {
+      transform: `translateY(calc(${HEADER_HEIGHT}px * -1))`,
+      zIndex: 101,
+      backgroundColor: "rgba(12,12,12,0.80)",
+      backdropFilter: "blur(10px)",
+      boxShadow: theme.boxShadow,
+      "@media": {
+        "screen and (max-width:576px)": {
+          transform: `translateY(calc(${MOBILE_HEADER_HEIGHT}px * -1))`,
+        },
+      },
+    },
+  ],
 })
 
 export const nav = style({

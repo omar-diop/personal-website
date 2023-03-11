@@ -66,30 +66,21 @@ export const middleLine = styleVariants({
 
 export const nav = style({
   display: "flex",
+  flex: 1,
   flexDirection: "column",
   position: "relative",
   justifyContent: "center",
   alignItems: "center",
-  width: "100%",
   color: theme.colors.text.dimmed,
   fontFamily: theme.fonts.monospace,
   fontSize: theme.fontSize.small,
   fontWeight: theme.fontWeight.regular,
-  "@media": {
-    "screen and (max-width: 992px)": {
-      fontSize: theme.fontSize.extraSmall,
-    },
-  },
 })
 
 export const links = style({
   display: "flex",
+  flexDirection: "column",
   alignItems: "center",
-  "@media": {
-    "screen and (max-width: 768px)": {
-      display: "none",
-    },
-  },
 })
 
 export const list = style({
@@ -97,18 +88,23 @@ export const list = style({
   margin: 0,
   listStyle: "none",
   display: "flex",
+  flexDirection: "column",
   justifyContent: "space-between",
-  alignItems: "center",
-  marginRight: theme.space.large,
+  alignItems: "flex-start",
 })
 
 export const link = style({
   margin: "0 5px",
   padding: "10px",
   position: "relative",
+  fontSize: theme.fontSize.small,
   transition: theme.transition,
+  marginBottom: theme.space.large,
   ":hover": {
     color: theme.colors.primary,
+  },
+  ":last-of-type": {
+    marginBottom: "3rem",
   },
 })
 

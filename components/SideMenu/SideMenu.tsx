@@ -2,18 +2,27 @@ import { useState } from "react"
 import * as style from "./sideMenu.css"
 import { openedSide } from "../../styles/globals.css"
 
-import Link from "next/link"
-// import { CallToAction } from "../CallToAction"
+import { CallToAction } from "../CallToAction"
 
 import navigationLinks from "../../data/navigation.json"
 import useBodyClass from "../../utils/useBodyClass"
+import { useRouter } from "next/router"
 
 type MenuStatus = boolean
 
 export function SideMenu() {
   const [opened, setOpened] = useState<MenuStatus>(false)
-
+  const router = useRouter()
   useBodyClass(opened ? openedSide : "")
+
+  const handleLinkClick = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    href: string
+  ) => {
+    e.preventDefault()
+    setOpened(false)
+    router.push(href)
+  }
 
   return (
     <>
@@ -29,13 +38,22 @@ export function SideMenu() {
             <ol className={style.list}>
               {navigationLinks.map((data) => (
                 <li className={style.link} key={data.label}>
-                  <Link href={data.href}>
+                  <a
+                    onClick={(e) => handleLinkClick(e, data.href)}
+                    href={data.href}
+                  >
                     <span className={style.prefix}>{data.prefix}</span>
                     <span>{data.label}</span>
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ol>
+            <CallToAction
+              text={"Contatti"}
+              link="mailto:info@omardiop.com"
+              type="primary_small"
+              mode="link"
+            />
           </div>
         </nav>
       </aside>

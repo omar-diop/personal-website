@@ -11,7 +11,7 @@ import useScroll from "../../utils/useScroll"
 const Logo = () => (
   <div className={style.logo}>
     <Link href="/">
-      <h1>Omar Diop</h1>
+      <h1>OD</h1>
     </Link>
   </div>
 )

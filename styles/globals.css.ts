@@ -47,3 +47,14 @@ export const main = style({
     },
   },
 })
+
+export const openedSide = style({
+  position: "fixed",
+})
+
+globalStyle(`${openedSide}  #contents > *`, {
+  filter: "blur(6px) brightness(0.65)",
+  transition: theme.transition,
+  pointerEvents: "none",
+  userSelect: "none",
+})

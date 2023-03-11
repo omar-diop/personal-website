@@ -1,7 +1,11 @@
 import * as style from "./navBar.css"
-import Link from "next/link"
+
 import navigationLinks from "../../data/navigation.json"
+
 import { CallToAction } from "../CallToAction"
+import { SideMenu } from "../SideMenu"
+import Link from "next/link"
+
 import useScroll from "../../utils/useScroll"
 
 const Logo = () => (
@@ -40,6 +44,7 @@ export function NavBar() {
           />
         </div>
       </nav>
+      <SideMenu />
     </header>
   )
 }

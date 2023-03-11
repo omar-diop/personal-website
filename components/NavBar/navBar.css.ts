@@ -8,6 +8,7 @@ const base = style({
   padding: " 0px 50px",
   position: "fixed",
   top: 0,
+  zIndex: 101,
   width: "100%",
   height: `${HEADER_HEIGHT}px`,
   display: "flex",
@@ -31,7 +32,6 @@ export const header = styleVariants({
     base,
     {
       transform: "translateY(0px)",
-      zIndex: 101,
       backgroundColor: "rgba(12,12,12,0.80)",
       backdropFilter: "blur(10px)",
       boxShadow: theme.boxShadow,
@@ -41,7 +41,6 @@ export const header = styleVariants({
     base,
     {
       transform: `translateY(calc(${HEADER_HEIGHT}px * -1))`,
-      zIndex: 101,
       backgroundColor: "rgba(12,12,12,0.80)",
       backdropFilter: "blur(10px)",
       boxShadow: theme.boxShadow,

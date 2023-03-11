@@ -10,6 +10,7 @@ import links from "../data/links.json"
 import Image from "next/image"
 import { Resource } from "../components/Resource"
 import { DigitalRain, DefaultDuration } from "../components/DigitalRain"
+import { SideMenu } from "../components/SideMenu"
 
 export default function Home() {
   const [matrixVisible, toggleMatrix] = useState(false)

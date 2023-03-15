@@ -44,22 +44,33 @@ export default function Home() {
           <div>
             <SectionTitle number="01." title="Chi sono" align="left" />
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Appassionato Software Engineer con una solida formazione
+              tecnologica, attualmente Technical Lead di
+              <a href="https://learnn.com" target="_blank">
+                <strong> @Learnn</strong>
+              </a>
             </p>
             <p>
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut <strong>aliquip ex ea</strong> commodo consequat.
+              La mia passione per la tecnologia è iniziata a soli
+              <strong> 10 anni</strong>, quando guardavo di nascosto le lezioni
+              di un corso di informatica che mio padre seguiva a casa.
             </p>
             <p>
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum <strong>dolore eu fugiat</strong> nulla pariatur. Excepteur
-              sint occaecat cupidatat non proident, sunt in culpa qui officia
-              deserunt mollit anim id est <strong>laborum.</strong>
+              Il primo <strong>"Hello World"</strong> è stato un momento di
+              svolta per me, e da allora non ho mai smesso di coltivare la mia
+              <strong> curiosità </strong> e migliorarmi costantemente.
             </p>
             <p>
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              Oltre alla mia passione per la programmazione ho acquisito solide
+              competenze trasversali per tutto ciò che ruota attorno allo
+              sviluppo di un prodotto: <strong> UX/UI</strong> ,
+              <strong> Product Management</strong> e <strong> Marketing</strong>
+              .
+            </p>
+            <p>
+              Il mio obiettivo è quello di diventare una figura digitale
+              completa e professionale in tutti gli ambiti, condividendo tutto
+              ciò che apprendo durante il percorso.
             </p>
           </div>
           <div className={style.imageContainer["desktop"]}>

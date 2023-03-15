@@ -63,7 +63,7 @@ export const icon = styleVariants({
   desktop: {
     width: "1.5rem",
     height: "1.5rem",
-    color: theme.colors.grey,
+    color: theme.colors.text.dimmed,
     transition: theme.transition,
     ":hover": {
       color: theme.colors.primary,

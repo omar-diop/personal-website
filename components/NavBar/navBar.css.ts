@@ -71,15 +71,9 @@ export const nav = style({
 })
 
 export const logo = style({
-  fontSize: theme.fontSize.medium,
-  fontFamily: theme.fonts.sans,
-  fontWeight: theme.fontWeight.bold,
-  color: theme.colors.text.normal,
-  "@media": {
-    "screen and (max-width: 768px)": {
-      fontSize: theme.fontSize.small,
-    },
-  },
+  position: "relative",
+  width: "80px",
+  height: "80px",
 })
 
 export const links = style({

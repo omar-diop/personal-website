@@ -5,15 +5,21 @@ import navigationLinks from "../../data/navigation.json"
 import { CallToAction } from "../CallToAction"
 import { SideMenu } from "../SideMenu"
 import Link from "next/link"
+import Image from "next/image"
 
 import useScroll from "../../utils/useScroll"
 
 const Logo = () => (
-  <div className={style.logo}>
-    <Link href="/">
-      <h1>OD</h1>
-    </Link>
-  </div>
+  <Link href="/">
+    <div className={style.logo}>
+      <Image
+        src="/images/logo.png"
+        alt="Omar Diop, Logo"
+        fill={true}
+        style={{ objectFit: "contain" }}
+      />
+    </div>
+  </Link>
 )
 
 export function NavBar() {
@@ -39,7 +45,7 @@ export function NavBar() {
           <CallToAction
             text={"Contatti"}
             link="mailto:info@omardiop.com"
-            type="primary_big"
+            type="primary_small"
             mode="link"
           />
         </div>

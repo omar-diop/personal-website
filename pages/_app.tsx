@@ -1,6 +1,5 @@
 import "../styles/typography.css"
 import "../styles/globals.css"
-import Head from "next/head"
 import * as style from "../styles/globals.css"
 
 import type { AppProps } from "next/app"

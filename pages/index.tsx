@@ -10,7 +10,8 @@ import links from "../data/links.json"
 import Image from "next/image"
 import { Resource } from "../components/Resource"
 import { DigitalRain, DefaultDuration } from "../components/DigitalRain"
-import { SideMenu } from "../components/SideMenu"
+import profilePic from "../public/images/profile.jpg"
+import talksPic from "../public/images/talks.jpg"
 
 export default function Home() {
   const [matrixVisible, toggleMatrix] = useState(false)
@@ -75,18 +76,20 @@ export default function Home() {
           </div>
           <div className={style.imageContainer["desktop"]}>
             <Image
-              src="/images/profile.jpg"
+              src={profilePic}
               alt="Omar Diop @Learnn Talks 2022, Rome"
               fill={true}
               className={style.profileImage}
+              placeholder="blur"
             />
           </div>
           <div className={style.imageContainer["mobile"]}>
             <Image
-              src="/images/talks.jpg"
+              src={talksPic}
               alt="Omar Diop @Learnn Talks 2022, Milan"
               fill={true}
               className={style.profileImage}
+              placeholder="blur"
             />
           </div>
         </div>

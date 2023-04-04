@@ -11,7 +11,7 @@ const talks: Talk[] = [
   {
     date: new Date(2022, 8, 5),
     event: "Learnn Talks Roma",
-    title: "Q & A con il team",
+    title: "Q & A",
     type: "interview",
     location: "Milan",
     link: null,
@@ -25,10 +25,9 @@ const talks: Talk[] = [
     link: null,
   },
   {
-    date: new Date(2023, 4, 26),
+    date: new Date(2023, 4, 28),
     event: "Learnn Offline",
-    title:
-      "Costruire un servizio di streaming at scale: tutto ciò che devi sapere",
+    title: "To Be Announced",
     type: "talk",
     location: "Milan",
     link: null,

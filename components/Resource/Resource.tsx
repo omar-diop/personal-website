@@ -21,7 +21,12 @@ export function Resource({
   align,
 }: IResource) {
   return (
-    <a className={style.container} href={link} target="_blank">
+    <a
+      className={style.container}
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <Image
         src={imageUrl}
         alt={title}

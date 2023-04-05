@@ -10,8 +10,8 @@ export function Socials({ viewport }: ISocials) {
           key={title}
           href={url}
           target="_blank"
+          rel="noopener noreferrer"
           className={style.link[viewport]}
-          rel="noreferrer"
         >
           <Icon className={style.icon[viewport]} />
         </a>

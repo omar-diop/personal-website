@@ -47,7 +47,11 @@ export default function Home() {
             <p>
               Appassionato Software Engineer con una solida formazione
               tecnologica, attualmente Technical Lead di
-              <a href="https://learnn.com" target="_blank">
+              <a
+                href="https://learnn.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <strong> @Learnn</strong>
               </a>
             </p>
@@ -154,7 +158,12 @@ export default function Home() {
           </div>
           <p className={style.pillsPs}>
             * se non conosci la reference ti consiglio subito di{" "}
-            <a className={style.pillsLink} href={links.martrix} target="_blank">
+            <a
+              className={style.pillsLink}
+              href={links.martrix}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               rimediare.
             </a>
           </p>

@@ -1,5 +1,6 @@
 import { IconType } from "react-icons"
 import { FiGithub, FiLinkedin, FiInstagram } from "react-icons/fi"
+import { SiMedium } from "react-icons/si"
 
 export type Social = {
   title: string
@@ -22,6 +23,11 @@ const socials: Social[] = [
     title: "Instagram",
     url: "https://www.instagram.com/omar.developer/",
     Icon: FiInstagram,
+  },
+  {
+    title: "Medium",
+    url: "https://medium.com/@omardiop",
+    Icon: SiMedium,
   },
 ]
 

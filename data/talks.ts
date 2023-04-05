@@ -30,7 +30,7 @@ const talks: Talk[] = [
     title: "To Be Announced",
     type: "talk",
     location: "Milan",
-    link: null,
+    link: "https://learnn.com/offline/",
   },
 ]
 

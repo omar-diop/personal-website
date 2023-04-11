@@ -45,7 +45,7 @@ export default function Home() {
           <div>
             <SectionTitle number="01." title="Chi sono" align="left" />
             <p>
-              Appassionato Software Engineer con una solida formazione
+              Sono un appassionato Software Engineer con una solida formazione
               tecnologica, attualmente Technical Lead di
               <a
                 href="https://learnn.com"
@@ -56,7 +56,7 @@ export default function Home() {
               </a>
             </p>
             <p>
-              La mia passione per la tecnologia è iniziata a soli
+              La mia passione per la tecnologia è iniziata a
               <strong> 10 anni</strong>, quando guardavo di nascosto le lezioni
               di un corso di informatica che mio padre seguiva a casa.
             </p>
@@ -121,7 +121,7 @@ export default function Home() {
             number="03."
             title="Contenuti"
             align="left"
-            subtitle="Tutti i miei contenuti e le mie risorse tecniche"
+            subtitle="I miei contenuti e le mie risorse tecniche"
           />
           {resources.map((resource, i) => (
             <Resource

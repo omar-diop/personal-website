@@ -1,3 +1,8 @@
-export const getRandomQuote = (quotes: string[]) => {
-  return quotes[Math.floor(Math.random() * quotes.length)]
+export const getNextQuote = (
+  quotes: string[],
+  currentIndex: number,
+  startIndex: number
+) => {
+  const nextIndex = (currentIndex + startIndex) % quotes.length
+  return quotes[nextIndex]
 }

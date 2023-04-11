@@ -16,7 +16,7 @@ export function Seo() {
           "Sono un appassionato sviluppatore con esperienza nello sviluppo di software, applicazioni, API e architetture software, unisco competenze tecniche e creative in ogni progetto. La mia esperienza in UI/UX, funnel marketing e prodotto mi consente di essere un professionista digitale completo. Il mio obiettivo è quello di crescere costantemente condividendo tutto ciò che imparo lungo il percorso.",
         images: [
           {
-            url: "https://omardiop.com/images/banner.png",
+            url: "https://omardiop.com/images/banner.jpg",
             alt: "Omar Diop | Software Engineer , Conference Speaker",
             height: 1200,
             width: 630,

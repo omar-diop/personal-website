@@ -27,7 +27,7 @@ const talks: Talk[] = [
   {
     date: new Date(2023, 4, 28),
     event: "Learnn Offline",
-    title: "To Be Announced",
+    title: "Strategia Tecnologica: istruzioni per l'uso",
     type: "talk",
     location: "Milan",
     link: "https://learnn.com/offline/",

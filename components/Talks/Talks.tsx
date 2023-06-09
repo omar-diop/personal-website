@@ -8,9 +8,10 @@ export function Talks() {
     <div className={style.container}>
       <Image
         src="/images/talks.jpg"
-        alt="Omar Diop @Learnn Talks 2022, Milan"
-        height={300}
-        width={240}
+        alt="Omar Diop @Learnn Offline 2023, photo by Christopher Di Stefano"
+        title="Omar Diop @Learnn Offline 2023, photo by Christopher Di Stefano"
+        height={320}
+        width={260}
         className={style.image}
       />
       <div className={style.talksList}>

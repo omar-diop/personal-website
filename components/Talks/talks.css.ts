@@ -12,7 +12,7 @@ export const talksList = style({
   borderRadius: theme.borderRadius,
   padding: "2rem",
   paddingLeft: "4rem",
-  minHeight: "350px",
+  minHeight: "380px",
   minWidth: "700px",
   marginLeft: `-2rem`,
   display: "flex",

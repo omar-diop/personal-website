@@ -2,6 +2,7 @@ import * as style from "./talks.css"
 import Image from "next/image"
 import talks, { Talk } from "../../data/talks"
 import { format, compareDesc } from "date-fns"
+import { FiExternalLink } from "react-icons/fi"
 
 export function Talks() {
   return (
@@ -25,7 +26,20 @@ export function Talks() {
                   {`${format(talk.date, "dd MMM yyyy")}`}
                 </div>
                 <div className={style.eventTitle}>
-                  {talk.event} <Badge talk={talk} />
+                  {talk.link ? (
+                    <a
+                      key={talk.title}
+                      href={talk.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={style.link}
+                    >
+                      {talk.event} <FiExternalLink className={style.linkIcon} />
+                    </a>
+                  ) : (
+                    talk.event
+                  )}
+                  <Badge talk={talk} />
                 </div>
                 <p className={style.talkTitle}>{talk.title}</p>
               </div>

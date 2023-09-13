@@ -99,3 +99,16 @@ export const badge = styleVariants({
     fontWeight: theme.fontWeight.semiBold,
   },
 })
+
+export const link = style({
+  transition: theme.transition,
+  display: "flex",
+  alignItems: "center",
+  ":hover": {
+    transform: "scale(1.01)",
+  },
+})
+
+export const linkIcon = style({
+  marginLeft: theme.space.small,
+})

@@ -1,16 +1,33 @@
+import { useState, useEffect, useRef } from "react"
 import * as style from "./talks.css"
 import Image from "next/image"
-import talks, { Talk } from "../../data/talks"
-import { format, compareDesc } from "date-fns"
 import { FiExternalLink } from "react-icons/fi"
 
+import { format, compareDesc } from "date-fns"
+import { loopList } from "../../utils"
+import talks, { Talk } from "../../data/talks"
+import talksImages from "../../data/images.json"
+
 export function Talks() {
+  const [imageSource, setImageSource] = useState(talksImages[0])
+  const currentIndex = useRef(0)
+
+  useEffect(() => {
+    const loopImages = setInterval(() => {
+      const nextImage = loopList(talksImages, currentIndex.current, 1)
+      currentIndex.current++
+      setImageSource(nextImage)
+    }, 5000)
+
+    return () => clearInterval(loopImages)
+  }, [])
+
   return (
     <div className={style.container}>
       <Image
-        src="/images/talks.jpg"
-        alt="Omar Diop @Learnn Offline 2023, photo by Christopher Di Stefano"
-        title="Omar Diop @Learnn Offline 2023, photo by Christopher Di Stefano"
+        src={imageSource}
+        alt="Omar Diop"
+        title="Omar Diop"
         height={320}
         width={260}
         className={style.image}

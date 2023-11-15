@@ -1,4 +1,4 @@
-export const getNextQuote = (
+export const loopList = (
   quotes: string[],
   currentIndex: number,
   startIndex: number

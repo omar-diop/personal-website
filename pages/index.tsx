@@ -11,7 +11,7 @@ import Image from "next/image"
 import { Resource } from "../components/Resource"
 import { DigitalRain, DefaultDuration } from "../components/DigitalRain"
 import profilePic from "../public/images/profile.jpg"
-import talksPic from "../public/images/talks.jpg"
+import talksPic from "../public/images/talks_0.jpg"
 
 export default function Home() {
   const [matrixVisible, toggleMatrix] = useState(false)

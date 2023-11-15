@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react"
-import { getNextQuote } from "../../utils"
+import { loopList } from "../../utils"
 import quotes from "../../data/quotes.json"
 import * as style from "./randomQuote.css"
 
@@ -9,7 +9,7 @@ export function RandomQuote() {
 
   useEffect(() => {
     const loopQuotes = setInterval(() => {
-      const nextQuote = getNextQuote(quotes, currentIndex.current, 1)
+      const nextQuote = loopList(quotes, currentIndex.current, 1)
       currentIndex.current++
       setText(nextQuote)
     }, 5000)

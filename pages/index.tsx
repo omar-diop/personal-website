@@ -104,7 +104,7 @@ export default function Home() {
             number="02."
             title="Eventi e Talks"
             align="center"
-            subtitle="Tutti gli eventi ai quali partecipo o in cui ho parlato."
+            subtitle="Gli ultimi eventi in cui ho parlato o parlerò."
           />
           <Talks />
           <CallToAction

@@ -10,7 +10,7 @@ export type Talk = {
 const talks: Talk[] = [
   {
     date: new Date(2022, 8, 5),
-    event: "Learnn Talks Roma",
+    event: "Learnn Talks Rome",
     title: "Q & A",
     type: "interview",
     location: "Milan",
@@ -18,8 +18,8 @@ const talks: Talk[] = [
   },
   {
     date: new Date(2022, 8, 12),
-    event: "Learnn Talks Milano",
-    title: "Q & A con il team",
+    event: "Learnn Talks Milan",
+    title: "Q & A with the team",
     type: "interview",
     location: "Milan",
     link: null,
@@ -43,12 +43,21 @@ const talks: Talk[] = [
   },
   {
     date: new Date(2023, 9, 24),
-    event: "Codemotion Conference",
+    event: "Codemotion Milan",
     title:
       "From Zero to 100,000 users: How to Build a Scalable Video Streaming Service",
     type: "talk",
     location: "Milan",
     link: "https://conferences.codemotion.com/milan2023-live/",
+  },
+  {
+    date: new Date(2024, 2, 8),
+    event: "Open Source Day",
+    title:
+      "Perfect Pitch: Unveiling the Mathematical Symphony Behind a Guitar Tuner",
+    type: "talk",
+    location: "Florence",
+    link: "https://osday.dev/",
   },
 ]
 

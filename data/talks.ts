@@ -59,6 +59,14 @@ const talks: Talk[] = [
     location: "Florence",
     link: "https://osday.dev/",
   },
+  {
+    date: new Date(2024, 5, 14),
+    event: "React Summit 🇳🇱",
+    title: "To be announced",
+    type: "talk",
+    location: "Amsterdam",
+    link: "https://reactsummit.com/",
+  },
 ]
 
 export default talks

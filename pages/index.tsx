@@ -28,11 +28,11 @@ export default function Home() {
     <>
       <section className={style.heroSection}>
         <div className={style.nameContainer}>
-          <h1 className={style.preText}>Ciao, mi chiamo</h1>
+          <h1 className={style.preText}>Hey there! I'm</h1>
           <h2 className={style.nameText}>Omar Diop</h2>
           <RandomQuote />
           <CallToAction
-            text="Scopri di più"
+            text="Discover more"
             link="#about"
             type="primary_big"
             mode="link"
@@ -43,10 +43,10 @@ export default function Home() {
       <section className={style.section} id="about">
         <div className={style.aboutContainer}>
           <div>
-            <SectionTitle number="01." title="Chi sono" align="left" />
+            <SectionTitle number="01." title="About" align="left" />
             <p>
-              Sono un appassionato Software Engineer con una solida formazione
-              tecnologica, attualmente Technical Lead di
+              I'm a passionate Software Engineer with a strong background in
+              technology, currently Technical Lead of
               <a
                 href="https://learnn.com"
                 target="_blank"
@@ -56,26 +56,26 @@ export default function Home() {
               </a>
             </p>
             <p>
-              La mia passione per la tecnologia è iniziata a
-              <strong> 10 anni</strong>, quando guardavo di nascosto le lezioni
-              di un corso di informatica che mio padre seguiva a casa.
+              My passion for technology began at <strong>10 years old</strong>,
+              when I used to sneakily watch the lessons of a computer course my
+              father was taking at home.
             </p>
             <p>
-              Il primo <strong>"Hello World"</strong> è stato un momento di
-              svolta per me, e da allora non ho mai smesso di coltivare la mia
-              <strong> curiosità </strong> e migliorarmi costantemente.
+              The first <strong>"Hello World"</strong> was a turning point for
+              me, and since then I've never stopped nurturing my{" "}
+              <strong> curiosity </strong> and striving for constant
+              improvement.
             </p>
             <p>
-              Oltre alla mia passione per la programmazione ho acquisito solide
-              competenze trasversali per tutto ciò che ruota attorno allo
-              sviluppo di un prodotto: <strong> UX/UI</strong> ,
-              <strong> Product Management</strong> e <strong> Marketing</strong>
-              .
+              In addition to my passion for programming, I've acquired solid
+              cross-functional skills in everything related to product
+              development: <strong> UX/UI</strong>,{" "}
+              <strong>Product Management</strong>, and{" "}
+              <strong>Marketing</strong>.
             </p>
             <p>
-              Il mio obiettivo è quello di diventare una figura digitale
-              completa e professionale in tutti gli ambiti, condividendo tutto
-              ciò che apprendo durante il percorso.
+              My goal is to become a complete and professional digital figure in
+              all areas, sharing everything I learn along the way.
             </p>
           </div>
           <div className={style.imageContainer["desktop"]}>
@@ -102,26 +102,26 @@ export default function Home() {
         <div className={style.sectionInner["centerAlign"]}>
           <SectionTitle
             number="02."
-            title="Eventi e Talks"
+            title="Events & Talks"
             align="center"
-            subtitle="Gli ultimi eventi in cui ho parlato o parlerò."
+            subtitle="The latest events where I have spoken or will speak."
           />
           <Talks />
           <CallToAction
-            text="Vuoi invitarmi? Scrivimi!"
-            link="mailto:accounts@omardiop.com"
+            text="Got an idea? Get in touch!"
+            link="mailto:info@omardiop.com"
             type="primary_small"
             mode="link"
           />
         </div>
       </section>
-      <section className={style.section} id="contents">
+      <section className={style.section} id="content">
         <div className={style.sectionInner["leftAlign"]}>
           <SectionTitle
             number="03."
-            title="Contenuti"
+            title="Content"
             align="left"
-            subtitle="I miei contenuti e le mie risorse tecniche"
+            subtitle="My content and technical resources"
           />
           {resources.map((resource, i) => (
             <Resource
@@ -134,7 +134,11 @@ export default function Home() {
       </section>
       <section className={style.section}>
         <div className={style.sectionInner["centerAlign"]}>
-          <SectionTitle number="04." title="A te la scelta *" align="center" />
+          <SectionTitle
+            number="04."
+            title="The choice is yours *"
+            align="center"
+          />
           <div className={style.pillText}>
             You take the blue pill - the story ends.
           </div>
@@ -143,13 +147,13 @@ export default function Home() {
           </div>
           <div className={style.pillsContainer}>
             <CallToAction
-              text="Pillola blu"
+              text="Blue pill"
               type="blue_big"
               onClick={() => toggleMatrix(true)}
               mode="button"
             />
             <CallToAction
-              text="Pillola rossa"
+              text="Red pill"
               link="mailto:info@omardiop.com"
               type="red_big"
               style={{ marginLeft: "1.5rem" }}
@@ -157,14 +161,14 @@ export default function Home() {
             />
           </div>
           <p className={style.pillsPs}>
-            * se non conosci la reference ti consiglio subito di{" "}
+            * If you don't know the reference, I recommend fixing that{" "}
             <a
               className={style.pillsLink}
               href={links.martrix}
               target="_blank"
               rel="noopener noreferrer"
             >
-              rimediare.
+              immediately.
             </a>
           </p>
         </div>

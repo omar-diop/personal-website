@@ -2,16 +2,16 @@
   {
     "href": "/#about",
     "prefix": "01.",
-    "label": "Chi sono"
+    "label": "About"
   },
   {
     "href": "/#events",
     "prefix": "02.",
-    "label": "Eventi"
+    "label": "Events"
   },
   {
-    "href": "/#contents",
+    "href": "/#content",
     "prefix": "03.",
-    "label": "Contenuti"
+    "label": "Content"
   }
 ]

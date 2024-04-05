@@ -9,14 +9,6 @@ export type Talk = {
 
 const talks: Talk[] = [
   {
-    date: new Date(2022, 8, 5),
-    event: "Learnn Talks Rome",
-    title: "Q & A",
-    type: "interview",
-    location: "Milan",
-    link: null,
-  },
-  {
     date: new Date(2022, 8, 12),
     event: "Learnn Talks Milan",
     title: "Q & A with the team",
@@ -62,7 +54,8 @@ const talks: Talk[] = [
   {
     date: new Date(2024, 5, 14),
     event: "React Summit 🇳🇱",
-    title: "To be announced",
+    title:
+      "Perfect Pitch: Unveiling the Mathematical Symphony Behind a Guitar Tuner",
     type: "talk",
     location: "Amsterdam",
     link: "https://reactsummit.com/",

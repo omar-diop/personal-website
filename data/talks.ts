@@ -9,16 +9,8 @@ export type Talk = {
 
 const talks: Talk[] = [
   {
-    date: new Date(2022, 8, 12),
-    event: "Learnn Talks Milan",
-    title: "Q & A with the team",
-    type: "interview",
-    location: "Milan",
-    link: null,
-  },
-  {
     date: new Date(2023, 4, 28),
-    event: "Learnn Offline",
+    event: "Learnn Offline 🇮🇹",
     title: "Strategia Tecnologica: istruzioni per l'uso",
     type: "talk",
     location: "Milan",
@@ -26,39 +18,48 @@ const talks: Talk[] = [
   },
   {
     date: new Date(2023, 8, 28),
-    event: "React JS Milano Meetup",
+    event: "React JS Milano Meetup 🇮🇹",
     title:
       "Streaming Video: Dal Backend al Frontend con AWS, React e React Native",
     type: "talk",
     location: "Milan",
-    link: "https://www.meetup.com/it-IT/react-js-milano/",
+    link: "https://www.youtube.com/live/iLja0mIx20Y?si=7ovA_yS1OsXmYGHF",
   },
   {
     date: new Date(2023, 9, 24),
-    event: "Codemotion Milan",
+    event: "Codemotion Milan 🇮🇹",
     title:
       "From Zero to 100,000 users: How to Build a Scalable Video Streaming Service",
     type: "talk",
     location: "Milan",
-    link: "https://conferences.codemotion.com/milan2023-live/",
+    link: "https://talks.codemotion.com/from-zero-to-100000-users-how-to-build-a-scalable-video-streaming-service",
   },
   {
     date: new Date(2024, 2, 8),
-    event: "Open Source Day",
+    event: "Open Source Day 🇮🇹",
     title:
       "Perfect Pitch: Unveiling the Mathematical Symphony Behind a Guitar Tuner",
     type: "talk",
     location: "Florence",
-    link: "https://osday.dev/",
+    link: "https://youtu.be/W9HBHDogaFU?si=kKrZ-z3wyldGAxgG",
   },
   {
-    date: new Date(2024, 5, 14),
+    date: new Date(2024, 5, 18),
     event: "React Summit 🇳🇱",
     title:
       "Perfect Pitch: Unveiling the Mathematical Symphony Behind a Guitar Tuner",
     type: "talk",
     location: "Amsterdam",
     link: "https://reactsummit.com/",
+  },
+  {
+    date: new Date(2024, 4, 30),
+    event: "Voxxed Days Trieste 🇮🇹",
+    title:
+      "Lessons Learned from Building a Video Player from Scratch with React Native",
+    type: "talk",
+    location: "Trieste",
+    link: "https://voxxeddays.com/trieste/",
   },
 ]
 

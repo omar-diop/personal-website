@@ -61,6 +61,14 @@ const talks: Talk[] = [
     location: "Trieste",
     link: "https://voxxeddays.com/trieste/",
   },
+  {
+    date: new Date(2024, 6, 18),
+    event: "WeAreDevelopers 🇩🇪",
+    title: "To Be Announced",
+    type: "talk",
+    location: "Berlin",
+    link: "https://worldcongress.dev",
+  },
 ]
 
 export default talks

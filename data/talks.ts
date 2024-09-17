@@ -87,6 +87,24 @@ const talks: Talk[] = [
     location: "Berlin",
     link: "https://worldcongress.dev",
   },
+  {
+    date: new Date(2024, 9, 23),
+    event: "Codemotion Milan 🇮🇹",
+    title:
+      "From MVP to Fully-Fledged: How We Crafted a Netflix-Like App in Just 45 Days",
+    type: "talk",
+    location: "Milan",
+    link: "https://conferences.codemotion.com/milan2024/it/home/",
+  },
+  {
+    date: new Date(2024, 10, 22),
+    event: "React Summit 🇺🇸",
+    title:
+      "Lessons Learned from Building a Video Player from Scratch with React Native",
+    type: "talk",
+    location: "New York",
+    link: "https://reactsummit.us/",
+  },
 ]
 
 export default talks

@@ -108,7 +108,7 @@ export default function Home() {
           />
           <Talks />
           <CallToAction
-            text="Got an idea? Get in touch!"
+            text="Want me at your event?"
             link="mailto:info@omardiop.com"
             type="primary_small"
             mode="link"

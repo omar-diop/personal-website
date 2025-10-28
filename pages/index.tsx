@@ -45,15 +45,17 @@ export default function Home() {
           <div>
             <SectionTitle number="01." title="About" align="left" />
             <p>
-              I'm a passionate Software Engineer with a strong background in
-              technology, currently Technical Lead of
+              Product Engineer with a strong technical foundation and a sharp
+              focus on impact. First team member at{" "}
               <a
                 href="https://learnn.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <strong> @Learnn</strong>
+                <strong>Learnn</strong>
               </a>
+              , a bootstrapped EdTech startup launched in 2020, now serving over{" "}
+              <strong>200,000 users</strong>.
             </p>
             <p>
               My passion for technology began at <strong>10 years old</strong>,
@@ -61,27 +63,30 @@ export default function Home() {
               father was taking at home.
             </p>
             <p>
-              The first <strong>"Hello World"</strong> was a turning point for
-              me, and since then I've never stopped nurturing my{" "}
-              <strong> curiosity </strong> and striving for constant
-              improvement.
+              My journey started with a simple <strong>"Hello World"</strong>{" "}
+              and turned into a continuous pursuit of learning, building, and
+              sharing. Over the years, I've worked across the full stack,
+              designing <strong>scalable APIs</strong>, architecting{" "}
+              <strong>complex systems</strong>, and crafting intuitive user
+              interfaces, always with a strong eye for product value.
             </p>
             <p>
-              In addition to my passion for programming, I've acquired solid
-              cross-functional skills in everything related to product
-              development: <strong> UX/UI</strong>,{" "}
-              <strong>Product Management</strong>, and{" "}
-              <strong>Marketing</strong>.
+              At the same time, I've developed a solid understanding of{" "}
+              <strong>product strategy</strong> and growth. I've designed{" "}
+              <strong>acquisition funnels</strong>, set up automated marketing
+              systems, and run ad campaigns to <strong>validate ideas</strong>{" "}
+              and scale features. For me, great code only matters if it helps
+              build something people love, and actually use.
             </p>
             <p>
-              My goal is to become a complete and professional digital figure in
-              all areas, sharing everything I learn along the way.
+              I'm passionate about blending software engineering with business
+              and product, sharing everything I learn along the way.
             </p>
           </div>
           <div className={style.imageContainer}>
             <Image
               src={profilePic}
-              alt="Omar Diop @Learnn Talks 2022, Rome"
+              alt="Omar Diop @Learnn Offline 2025, Parma"
               fill={true}
               className={style.profileImage}
               placeholder="blur"

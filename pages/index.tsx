@@ -11,7 +11,7 @@ import Image from "next/image"
 import { Resource } from "../components/Resource"
 import { DigitalRain, DefaultDuration } from "../components/DigitalRain"
 import profilePic from "../public/images/profile.jpg"
-import talksPic from "../public/images/talks_0.jpg"
+import talksPic from "../public/images/talks_0.png"
 
 export default function Home() {
   const [matrixVisible, toggleMatrix] = useState(false)
@@ -78,19 +78,10 @@ export default function Home() {
               all areas, sharing everything I learn along the way.
             </p>
           </div>
-          <div className={style.imageContainer["desktop"]}>
+          <div className={style.imageContainer}>
             <Image
               src={profilePic}
               alt="Omar Diop @Learnn Talks 2022, Rome"
-              fill={true}
-              className={style.profileImage}
-              placeholder="blur"
-            />
-          </div>
-          <div className={style.imageContainer["mobile"]}>
-            <Image
-              src={talksPic}
-              alt="Omar Diop @Learnn Talks 2022, Milan"
               fill={true}
               className={style.profileImage}
               placeholder="blur"
@@ -108,8 +99,8 @@ export default function Home() {
           />
           <Talks />
           <CallToAction
-            text="Want me at your event?"
-            link="mailto:info@omardiop.com"
+            text="View all events"
+            link="/events"
             type="primary_small"
             mode="link"
           />

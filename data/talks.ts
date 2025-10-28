@@ -9,6 +9,22 @@ export type Talk = {
 
 const talks: Talk[] = [
   {
+    date: new Date(2022, 8, 5),
+    event: "Learnn Talks Roma",
+    title: "Q & A",
+    type: "interview",
+    location: "Milan",
+    link: null,
+  },
+  {
+    date: new Date(2022, 8, 12),
+    event: "Learnn Talks Milano 🇮🇹",
+    title: "Q & A with the team",
+    type: "interview",
+    location: "Milan",
+    link: null,
+  },
+  {
     date: new Date(2023, 4, 28),
     event: "Learnn Offline 🇮🇹",
     title: "Strategia Tecnologica: istruzioni per l'uso",
@@ -18,7 +34,7 @@ const talks: Talk[] = [
   },
   {
     date: new Date(2023, 8, 28),
-    event: "React JS Milano Meetup 🇮🇹",
+    event: "React JS Milano 🇮🇹",
     title:
       "Streaming Video: Dal Backend al Frontend con AWS, React e React Native",
     type: "talk",
@@ -104,6 +120,32 @@ const talks: Talk[] = [
     type: "talk",
     location: "New York",
     link: "https://reactsummit.us/",
+  },
+  {
+    date: new Date(2025, 4, 25),
+    event: "Learnn Offline 🇮🇹",
+    title:
+      "Sviluppare con AI: strategie per creare un prodotto tecnologico nel 2025",
+    type: "talk",
+    location: "Parma",
+    link: "https://my.learnn.com/corso/3117",
+  },
+  {
+    date: new Date(2025, 9, 9),
+    event: "Digital Innovation Days 🇮🇹",
+    title:
+      "Dalla velocità al valore: costruire prodotti con l’AI in modo duraturo e sostenibile",
+    type: "talk",
+    location: "Milan",
+    link: "https://digitalinnovationdays.com/",
+  },
+  {
+    date: new Date(2025, 10, 4),
+    event: "LeadDev Berlin 🇩🇪",
+    title: "We brought AI into our sprints, here’s what changed",
+    type: "talk",
+    location: "Berlin",
+    link: "https://leaddev.com/leaddev-berlin/",
   },
 ]
 

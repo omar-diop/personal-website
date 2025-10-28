@@ -21,6 +21,7 @@ export const theme = createGlobalTheme(":root", {
     red: "#FF703B",
     grey: "rgba(169,169,169,0.4)",
     darkGrey: "#262626",
+    cardBackground: "#1A1A1A",
     text: {
       normal: "#ffffff",
       dimmed: "#A9A9A9",
@@ -43,6 +44,7 @@ export const theme = createGlobalTheme(":root", {
     large: "2.5rem",
   },
   borderRadius: "4px",
+  borderRadiusLarge: "8px",
   transition: "all 0.25s cubic-bezier(0.645,0.045,0.355,1)",
   boxShadow: "rgb(0, 0, 0) 0px 15px 29px -15px",
 })

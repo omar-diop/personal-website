@@ -5,7 +5,7 @@
     "label": "About"
   },
   {
-    "href": "/#events",
+    "href": "/events",
     "prefix": "02.",
     "label": "Events"
   },

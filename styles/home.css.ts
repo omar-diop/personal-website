@@ -136,9 +136,9 @@ export const sectionInner = styleVariants({
   ],
 })
 
-const baseImageContainer = style({
+export const imageContainer = style({
   position: "relative",
-  maxWidth: "270px",
+  maxWidth: "350px",
   boxShadow: theme.boxShadow,
   "::before": {
     borderTop: `2px solid ${theme.colors.primary}`,
@@ -164,39 +164,52 @@ const baseImageContainer = style({
     height: "50%",
     content: "",
   },
+  "@media": {
+    "screen and (max-width:576px)": {
+      height: "300px",
+      width: "250px",
+      display: "block",
+      margin: "0 auto",
+    },
+    "screen and (max-width: 768px)": {
+      height: "300px",
+      width: "300px",
+      margin: "0 auto",
+    },
+  },
 })
 
-export const imageContainer = styleVariants({
-  mobile: [
-    baseImageContainer,
-    {
-      display: "none",
-      "@media": {
-        "screen and (max-width:576px)": {
-          height: "300px",
-          width: "250px",
-          display: "block",
-          margin: "0 auto",
-        },
-      },
-    },
-  ],
-  desktop: [
-    baseImageContainer,
-    {
-      "@media": {
-        "screen and (max-width: 768px)": {
-          height: "300px",
-          width: "300px",
-          margin: "0 auto",
-        },
-        "screen and (max-width:576px)": {
-          display: "none",
-        },
-      },
-    },
-  ],
-})
+// export const imageContainer = styleVariants({
+//   mobile: [
+//     baseImageContainer,
+//     {
+//       display: "none",
+//       "@media": {
+//         "screen and (max-width:576px)": {
+//           height: "300px",
+//           width: "250px",
+//           display: "block",
+//           margin: "0 auto",
+//         },
+//       },
+//     },
+//   ],
+//   desktop: [
+//     baseImageContainer,
+//     {
+//       "@media": {
+//         "screen and (max-width: 768px)": {
+//           height: "300px",
+//           width: "300px",
+//           margin: "0 auto",
+//         },
+//         "screen and (max-width:576px)": {
+//           display: "none",
+//         },
+//       },
+//     },
+//   ],
+// })
 
 export const profileImage = style({
   borderRadius: theme.borderRadius,

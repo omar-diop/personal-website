@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from "react"
 import * as style from "./talks.css"
 import Image from "next/image"
-import { FiExternalLink } from "react-icons/fi"
+import { TalkCard } from "./TalkCard"
 
-import { format, compareDesc } from "date-fns"
+import { compareDesc } from "date-fns"
 import { loopList } from "../../utils"
-import talks, { Talk } from "../../data/talks"
+import talks from "../../data/talks"
 import talksImages from "../../data/images.json"
 
 export function Talks() {
@@ -22,51 +22,38 @@ export function Talks() {
     return () => clearInterval(loopImages)
   }, [])
 
+  const sortedTalks = talks.sort((a, b) => compareDesc(a.date, b.date))
+
   return (
     <div className={style.container}>
-      <Image
-        src={imageSource}
-        alt="Omar Diop"
-        title="Omar Diop"
-        height={320}
-        width={260}
-        className={style.image}
-      />
       <div className={style.talksList}>
-        {talks
-          .sort((a, b) => compareDesc(a.date, b.date))
-          .map((talk) => (
-            <div className={style.talk} key={talk.title}>
-              <div className={style.listItem}>{">"}</div>
-              <div>
-                <div className={style.date}>
-                  {`${format(talk.date, "dd MMM yyyy")}`}
-                </div>
-                <div className={style.eventTitle}>
-                  {talk.link ? (
-                    <a
-                      key={talk.title}
-                      href={talk.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={style.link}
-                    >
-                      {talk.event} <FiExternalLink className={style.linkIcon} />
-                    </a>
-                  ) : (
-                    talk.event
-                  )}
-                  <Badge talk={talk} />
-                </div>
-                <p className={style.talkTitle}>{talk.title}</p>
-              </div>
-            </div>
-          ))}
+        {sortedTalks.slice(0, 6).map((talk, index) => (
+          <TalkCard
+            key={`${talk.title}-${talk.date.getTime()}-${index}`}
+            date={talk.date}
+            event={talk.event}
+            title={talk.title}
+            type={talk.type}
+            link={talk.link}
+          />
+        ))}
+      </div>
+
+      <div className={style.carouselContainer}>
+        <div className={style.imageContainer}>
+          <Image
+            src={imageSource}
+            alt="Omar Diop"
+            title="Omar Diop"
+            height={400}
+            width={300}
+            className={style.image}
+          />
+        </div>
+        <div className={style.carouselDescription}>
+          Speaking at conferences and events
+        </div>
       </div>
     </div>
   )
 }
-
-const Badge = ({ talk }: { talk: Talk }) => (
-  <div className={style.badge[talk.type]}>{talk.type}</div>
-)

@@ -4,111 +4,67 @@ import { theme } from "../../styles/theme.css"
 export const container = style({
   display: "flex",
   marginBottom: "3rem",
-  alignItems: "center",
+  gap: theme.space.extraLarge,
+  alignItems: "flex-start",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      flexDirection: "column",
+      gap: theme.space.large,
+    },
+  },
 })
 
 export const talksList = style({
-  backgroundColor: theme.colors.darkGrey,
-  borderRadius: theme.borderRadius,
-  padding: "2rem",
-  paddingLeft: "4rem",
-  minHeight: "380px",
-  minWidth: "700px",
-  marginLeft: `-2rem`,
+  flex: "1",
   display: "flex",
   flexDirection: "column",
-  justifyContent: "center",
-  boxShadow: theme.boxShadow,
+  gap: "0.75rem",
   "@media": {
-    "screen and (max-width: 1200px)": {
+    "screen and (max-width: 768px)": {
       width: "100%",
-      minWidth: "400px",
     },
-    "screen and (max-width: 576px)": {
+  },
+})
+
+export const carouselContainer = style({
+  flex: "0 0 300px",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: theme.space.large,
+  "@media": {
+    "screen and (max-width: 768px)": {
+      flex: "none",
       width: "100%",
-      maxWidth: "100%",
-      minWidth: "100%",
-      marginLeft: 0,
-      padding: "1.5rem",
+    },
+  },
+})
+
+export const imageContainer = style({
+  position: "relative",
+  width: "100%",
+  height: "400px",
+  backgroundColor: theme.colors.darkGrey,
+  borderRadius: theme.borderRadiusLarge,
+  overflow: "hidden",
+  boxShadow: theme.boxShadow,
+  border: `1px solid ${theme.colors.grey}`,
+  "@media": {
+    "screen and (max-width: 768px)": {
+      height: "500px",
     },
   },
 })
 
 export const image = style({
   objectFit: "cover",
-  borderRadius: theme.borderRadius,
-  boxShadow: theme.boxShadow,
-  zIndex: 100,
-  "@media": {
-    "screen and (max-width: 576px)": {
-      display: "none",
-    },
-  },
+  width: "100%",
+  height: "100%",
 })
 
-export const talk = style({
-  display: "flex",
-  alignItems: "flex-start",
-  marginBottom: theme.space.large,
-})
-
-export const date = style({
-  color: theme.colors.primary,
-  fontFamily: theme.fonts.monospace,
+export const carouselDescription = style({
+  color: theme.colors.text.dimmed,
   fontSize: theme.fontSize.extraSmall,
-  marginBottom: theme.space.small,
-})
-
-export const listItem = style({
-  color: theme.colors.primary,
-  fontSize: theme.fontSize.small,
-  marginRight: theme.space.medium,
-})
-
-export const eventTitle = style({
-  display: "flex",
-  alignItems: "center",
-  color: theme.colors.text.normal,
-  fontWeight: theme.fontWeight.bold,
+  textAlign: "center",
   fontFamily: theme.fonts.sans,
-  fontSize: "1.3rem",
-  marginBottom: theme.space.medium,
-})
-
-export const talkTitle = style({
-  margin: 0,
-})
-
-export const badge = styleVariants({
-  talk: {
-    padding: `${theme.space.extraSmall} ${theme.space.medium}`,
-    borderRadius: "2rem",
-    fontSize: theme.fontSize.extraSmall,
-    backgroundColor: "rgba(0,227,169,0.1)",
-    marginLeft: theme.space.medium,
-    color: theme.colors.primary,
-    fontWeight: theme.fontWeight.semiBold,
-  },
-  interview: {
-    padding: `${theme.space.extraSmall} ${theme.space.medium}`,
-    borderRadius: "2rem",
-    fontSize: theme.fontSize.extraSmall,
-    backgroundColor: "rgba(0,134,222,0.1)",
-    marginLeft: theme.space.medium,
-    color: theme.colors.blue,
-    fontWeight: theme.fontWeight.semiBold,
-  },
-})
-
-export const link = style({
-  transition: theme.transition,
-  display: "flex",
-  alignItems: "center",
-  ":hover": {
-    transform: "scale(1.01)",
-  },
-})
-
-export const linkIcon = style({
-  marginLeft: theme.space.small,
 })

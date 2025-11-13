@@ -20,28 +20,38 @@ export function TalkCard({
   link,
   onClick,
 }: TalkCardProps) {
-  return (
-    <div className={style.talkCard} onClick={onClick}>
+  const content = (
+    <>
       <div className={style.talkContent}>
         <div className={style.talkDate}>{format(date, "dd MMM yyyy")}</div>
         <div className={style.talkEvent}>
-          {link ? (
-            <a
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={style.link}
-            >
-              {event} <FiExternalLink className={style.linkIcon} />
-            </a>
-          ) : (
-            event
-          )}
+          {event}
+          {link && <FiExternalLink className={style.linkIcon} />}
           <Badge type={type} />
         </div>
         <p className={style.talkTitle}>{title}</p>
       </div>
-      <FiChevronRight className={style.talkArrow} />
+      {link && <FiChevronRight className={style.talkArrow} />}
+    </>
+  )
+
+  if (link) {
+    return (
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={style.talkCardLink}
+        onClick={onClick}
+      >
+        {content}
+      </a>
+    )
+  }
+
+  return (
+    <div className={style.talkCard} onClick={onClick}>
+      {content}
     </div>
   )
 }

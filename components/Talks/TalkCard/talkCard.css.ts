@@ -1,7 +1,7 @@
 import { style, styleVariants } from "@vanilla-extract/css"
 import { theme } from "../../../styles/theme.css"
 
-export const talkCard = style({
+const talkCardBase = style({
   display: "flex",
   alignItems: "center",
   backgroundColor: theme.colors.cardBackground,
@@ -9,7 +9,6 @@ export const talkCard = style({
   padding: `${theme.space.large} ${theme.space.large}`,
   boxShadow: theme.boxShadow,
   transition: theme.transition,
-  cursor: "pointer",
   border: `1px solid ${theme.colors.grey}`,
   ":hover": {
     transform: "translateY(-1px)",
@@ -17,6 +16,22 @@ export const talkCard = style({
     border: `1px solid ${theme.colors.primary}`,
   },
 })
+
+export const talkCard = style([
+  talkCardBase,
+  {
+    cursor: "default",
+  },
+])
+
+export const talkCardLink = style([
+  talkCardBase,
+  {
+    cursor: "pointer",
+    textDecoration: "none",
+    color: "inherit",
+  },
+])
 
 export const talkContent = style({
   flex: "1",
@@ -82,15 +97,6 @@ export const badge = styleVariants({
     marginLeft: theme.space.medium,
     color: theme.colors.blue,
     fontWeight: theme.fontWeight.semiBold,
-  },
-})
-
-export const link = style({
-  transition: theme.transition,
-  display: "flex",
-  alignItems: "center",
-  ":hover": {
-    transform: "scale(1.01)",
   },
 })
 

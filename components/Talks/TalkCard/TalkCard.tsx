@@ -9,17 +9,9 @@ export interface TalkCardProps {
   title: string
   type: Talk["type"]
   link?: string | null
-  onClick?: () => void
 }
 
-export function TalkCard({
-  date,
-  event,
-  title,
-  type,
-  link,
-  onClick,
-}: TalkCardProps) {
+export function TalkCard({ date, event, title, type, link }: TalkCardProps) {
   const content = (
     <>
       <div className={style.talkContent}>
@@ -42,18 +34,13 @@ export function TalkCard({
         target="_blank"
         rel="noopener noreferrer"
         className={style.talkCardLink}
-        onClick={onClick}
       >
         {content}
       </a>
     )
   }
 
-  return (
-    <div className={style.talkCard} onClick={onClick}>
-      {content}
-    </div>
-  )
+  return <div className={style.talkCard}>{content}</div>
 }
 
 const Badge = ({ type }: { type: Talk["type"] }) => (

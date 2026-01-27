@@ -20,6 +20,9 @@ export const hero = style({
       height: "50vh",
       minHeight: "350px",
     },
+    "screen and (min-height: 1080px)": {
+      maxHeight: "650px",
+    },
   },
 })
 
@@ -59,6 +62,7 @@ export const heroContent = style({
 })
 
 export const container = style({
+  position: "relative",
   display: "flex",
   flexDirection: "column",
   gap: theme.space.extraLarge,
@@ -66,6 +70,7 @@ export const container = style({
   width: "100%",
   maxWidth: "800px",
   margin: "0 auto",
+  marginTop: "-100px",
   "@media": {
     "screen and (max-width: 768px)": {
       padding: `${theme.space.large} 0`,

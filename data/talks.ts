@@ -83,7 +83,7 @@ const talks: Talk[] = [
       "Perfect Pitch: Unveiling the Mathematical Symphony Behind a Guitar Tuner",
     type: "talk",
     location: "Amsterdam",
-    link: "https://reactsummit.com/",
+    link: "https://gitnation.com/contents/perfect-pitch-unveiling-the-mathematical-symphony-behind-a-guitar-tuner",
   },
   {
     date: new Date(2024, 4, 30),
@@ -101,7 +101,7 @@ const talks: Talk[] = [
       "Perfect Pitch: Unveiling the Mathematical Symphony Behind a Guitar Tuner",
     type: "talk",
     location: "Berlin",
-    link: "https://worldcongress.dev",
+    link: "https://www.wearedevelopers.com/en/videos/1095/perfect-pitch-unveiling-the-mathematical-symphony-behind-a-guitar-tuner",
   },
   {
     date: new Date(2024, 9, 23),
@@ -119,7 +119,7 @@ const talks: Talk[] = [
       "Lessons Learned from Building a Video Player from Scratch with React Native",
     type: "talk",
     location: "New York",
-    link: "https://reactsummit.us/",
+    link: "https://gitnation.com/contents/a-4-year-retrospective-lessons-learned-from-building-a-video-player-from-scratch-with-react-native/video",
   },
   {
     date: new Date(2025, 4, 25),
@@ -145,7 +145,7 @@ const talks: Talk[] = [
     title: "We brought AI into our sprints, here’s what changed",
     type: "talk",
     location: "Berlin",
-    link: "https://leaddev.com/leaddev-berlin/",
+    link: "https://leaddev.com/leadership/we-brought-ai-into-our-sprints-heres-what-changed",
   },
 ]
 

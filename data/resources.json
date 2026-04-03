@@ -1,6 +1,14 @@
 [
   {
-    "title": "Ads GPT: un’estensione Chrome per generare annunci pubblicitari con OpenAI",
+    "title": "Learnn: il ruolo della tecnologia nel design e nello sviluppo di un prodotto",
+    "description": "Il caso studio tecnico completo di Learnn: dalla validazione con uno stack a €200/mese all'infrastruttura serverless su AWS. 86 pagine di decisioni architetturali, test di usabilità e lezioni imparate.",
+    "imageUrl": "/images/tesi-og.jpg",
+    "link": "/tesi-learnn",
+    "type": "Tesi",
+    "tags": ["AWS", "UX", "Product", "Serverless", "DynamoDB"]
+  },
+  {
+    "title": "Ads GPT: un'estensione Chrome per generare annunci pubblicitari con OpenAI",
     "description": "Come utilizzare l'API di OpenAI per creare una Chrome Extension che genera testi per Facebook ADS.",
     "imageUrl": "https://dgdft8ck5n9om.cloudfront.net/ads-gpt.png",
     "link": "https://medium.com/@omardiop/ads-gpt-unestensione-chrome-per-generare-annunci-pubblicitari-con-openai-dd2cb5466d6e",

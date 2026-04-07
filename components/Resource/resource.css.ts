@@ -25,9 +25,9 @@ const imageBase = style({
   transition: theme.transition,
   ":hover": {
     transform: "scale(1.01)",
-    filter: "brightness(80%)",
+    filter: "brightness(90%)",
   },
-  filter: "brightness(40%)",
+  filter: "brightness(60%)",
   "@media": {
     "screen and (max-width: 576px)": {
       filter: "brightness(20%)",

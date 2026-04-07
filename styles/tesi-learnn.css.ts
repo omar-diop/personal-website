@@ -2,16 +2,44 @@ import { style, globalStyle } from "@vanilla-extract/css"
 import { theme } from "./theme.css"
 
 export const header = style({
-  display: "flex",
-  flexDirection: "column",
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: "60px",
   alignItems: "center",
-  textAlign: "center",
-  maxWidth: "800px",
+  maxWidth: "1000px",
   margin: "0 auto",
   padding: "120px 0 80px",
   "@media": {
     "screen and (max-width: 768px)": {
+      gridTemplateColumns: "1fr",
       padding: "80px 0 60px",
+      textAlign: "center",
+    },
+  },
+})
+
+export const headerContent = style({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-start",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      alignItems: "center",
+    },
+  },
+})
+
+export const headerImage = style({
+  position: "relative",
+  width: "100%",
+  aspectRatio: "0.707",
+  borderRadius: theme.borderRadiusLarge,
+  overflow: "hidden",
+  boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      maxWidth: "300px",
+      margin: "0 auto",
     },
   },
 })
@@ -22,7 +50,7 @@ export const title = style({
   fontSize: "2.5rem",
   lineHeight: "3rem",
   margin: 0,
-  marginBottom: "0.15rem",
+  marginBottom: theme.space.large,
   "@media": {
     "screen and (max-width: 768px)": {
       fontSize: "1.8rem",
@@ -57,15 +85,24 @@ export const description = style({
 export const ctaContainer = style({
   display: "flex",
   flexDirection: "column",
-  alignItems: "center",
+  alignItems: "flex-start",
   gap: theme.space.large,
+  "@media": {
+    "screen and (max-width: 768px)": {
+      alignItems: "center",
+    },
+  },
 })
 
 export const secondaryCta = style({
   fontSize: theme.fontSize.extraSmall,
   color: theme.colors.text.dimmed,
   lineHeight: theme.lineHeight.small,
-  textAlign: "center",
+  "@media": {
+    "screen and (max-width: 768px)": {
+      textAlign: "center",
+    },
+  },
 })
 
 globalStyle(`${secondaryCta} a`, {

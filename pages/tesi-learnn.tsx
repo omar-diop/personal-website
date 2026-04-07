@@ -1,5 +1,6 @@
 import { NextSeo } from "next-seo"
 import { usePostHog } from "posthog-js/react"
+import Image from "next/image"
 import { SectionTitle } from "../components/SectionTitle"
 import { CallToAction } from "../components/CallToAction"
 import * as style from "../styles/tesi-learnn.css"
@@ -128,35 +129,50 @@ export default function TesiLearnn() {
         }}
       />
 
-      {/* Header */}
       <div className={style.header}>
-        <h1 className={style.title}>
-          Learnn: il ruolo della tecnologia nel design e nello sviluppo di un
-          prodotto
-        </h1>
-        <p className={style.subtitle}>Omar Diop — 2022</p>
-        <p className={style.description}>
-          Il caso studio tecnico e di prodotto completo di Learnn, da 0 a 28.000
-          utenti. Dalla validazione con uno stack a €200/mese alla prima
-          infrastruttura serverless su AWS. 86 pagine di decisioni
-          architetturali, test di usabilità e lezioni imparate costruendo un
-          prodotto da zero.
-        </p>
-        <div className={style.ctaContainer}>
-          <CallToAction
-            mode="button"
-            text="Scarica PDF"
-            onClick={handleDownload}
-            type="primary_big"
-          />
-          <p className={style.secondaryCta}>
-            Su <a href="/newsletter">Omar.log()</a> commento la tesi con la
-            prospettiva di 4 anni dopo.
+        <div className={style.headerContent}>
+          <h1 className={style.title}>
+            Learnn: il ruolo della tecnologia nel design e nello sviluppo di un
+            prodotto
+          </h1>
+          <p className={style.subtitle}>Omar Diop — 2022</p>
+          <p className={style.description}>
+            Il caso studio tecnico e di prodotto completo di Learnn, da 0 a
+            28.000 utenti. Dalla validazione con uno stack a €200/mese alla
+            prima infrastruttura serverless su AWS. 86 pagine di decisioni
+            architetturali, test di usabilità e lezioni imparate costruendo un
+            prodotto da zero.
           </p>
+          <div className={style.ctaContainer}>
+            <CallToAction
+              mode="button"
+              text="Scarica PDF"
+              onClick={handleDownload}
+              type="primary_big"
+            />
+            <p className={style.secondaryCta}>
+              Su{" "}
+              <a
+                href="https://omarlog.substack.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Omar.log()
+              </a>{" "}
+              commento la tesi con la prospettiva di 4 anni dopo.
+            </p>
+          </div>
+        </div>
+        <div className={style.headerImage}>
+          <Image
+            src="https://dgdft8ck5n9om.cloudfront.net/tesi-preview.png"
+            alt="Anteprima della tesi Learnn"
+            fill
+            style={{ objectFit: "cover", objectPosition: "top" }}
+          />
         </div>
       </div>
 
-      {/* Indice rapido */}
       <div className={style.section}>
         <SectionTitle
           number="01."
@@ -179,16 +195,21 @@ export default function TesiLearnn() {
         </div>
       </div>
 
-      {/* Footer sezione */}
       <div className={style.footerSection}>
         <p className={style.footerText}>
           Questa tesi è stata scritta nel 2022 mentre lavoravo a Learnn. Oggi
           Learnn ha più di 250.000 utenti. Documenta il processo iniziale, dalla
           validazione alla prima infrastruttura e alla sua evoluzione. Su
-          Omar.log() la commento con la prospettiva di 4 anni dopo: cosa
-          rifarei, cosa cambierei, e come affronterei lo stesso problema oggi.
+          Omar.log(), la mia newsletter Substack, la commento con la prospettiva
+          di 4 anni dopo: cosa rifarei, cosa cambierei, e come affronterei lo
+          stesso problema oggi.
         </p>
-        <a href="/newsletter" className={style.newsletterLink}>
+        <a
+          href="https://omarlog.substack.com/subscribe"
+          className={style.newsletterLink}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Iscriviti a Omar.log() →
         </a>
       </div>

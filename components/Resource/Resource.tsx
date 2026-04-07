@@ -20,12 +20,13 @@ export function Resource({
   tags,
   align,
 }: IResource) {
+  const isExternal = link.startsWith("http")
+
   return (
     <a
       className={style.container}
       href={link}
-      target="_blank"
-      rel="noopener noreferrer"
+      {...(isExternal && { target: "_blank", rel: "noopener noreferrer" })}
     >
       <Image
         src={imageUrl}

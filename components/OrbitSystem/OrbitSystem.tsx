@@ -10,6 +10,10 @@ const verticals: Record<OrbitKey, string> = {
 export function OrbitSystem() {
   return (
     <div className={style.background}>
+      <span className={style.stars.far} />
+      <span className={style.stars.mid} />
+      <span className={style.stars.near} />
+      <span className={style.shootingStar} />
       <div className={style.scene}>
         <div className={style.system}>
           <div className={style.sunGlow} />

@@ -32,6 +32,43 @@ const pulse = keyframes({
   "100%": { transform: `rotateX(-${tilt}deg) scale(1)`, opacity: 0.6 },
 })
 
+const twinkle = keyframes({
+  "0%": { opacity: 0.4 },
+  "50%": { opacity: 1 },
+  "100%": { opacity: 0.4 },
+})
+
+const shoot = keyframes({
+  "0%": { transform: "rotate(-30deg) translateX(0)", opacity: 0 },
+  "1%": { opacity: 1 },
+  "6%": { transform: "rotate(-30deg) translateX(-460px)", opacity: 0 },
+  "100%": { transform: "rotate(-30deg) translateX(-460px)", opacity: 0 },
+})
+
+// Deterministic PRNG: this file runs at build time, so the star field
+// must come out identical on every evaluation or SSR markup and client
+// CSS would drift apart.
+const rand = (() => {
+  let seed = 20260717
+  return () => {
+    seed = (seed * 16807) % 2147483647
+    return seed / 2147483647
+  }
+})()
+
+const starField = (count: number, alpha: number) =>
+  Array.from(
+    { length: count },
+    () =>
+      `${(rand() * 100).toFixed(1)}vw ${(rand() * 100).toFixed(1)}vh 0 rgba(255,255,255,${alpha})`
+  ).join(", ")
+
+const starLayers = {
+  far: { count: 60, size: 1, alpha: 0.4, duration: "9s", delay: "0s" },
+  mid: { count: 25, size: 2, alpha: 0.5, duration: "6s", delay: "-2s" },
+  near: { count: 10, size: 2.5, alpha: 0.8, duration: "4s", delay: "-1s" },
+}
+
 // Theme accent colors as plain hex so we can derive alpha glows,
 // which CSS variables from the theme contract don't allow.
 const orbits = {
@@ -75,6 +112,44 @@ export const background = style({
     "screen and (max-width:576px)": {
       justifyContent: "center",
       alignItems: "flex-start",
+    },
+  },
+})
+
+// Invisible 1-star element: the whole field lives in its box-shadow.
+export const stars = styleVariants(starLayers, (l) => ({
+  position: "absolute",
+  top: 0,
+  left: 0,
+  width: `${l.size}px`,
+  height: `${l.size}px`,
+  borderRadius: "50%",
+  boxShadow: starField(l.count, l.alpha),
+  animation: `${twinkle} ${l.duration} ease-in-out infinite`,
+  animationDelay: l.delay,
+  "@media": {
+    "(prefers-reduced-motion: reduce)": {
+      animationPlayState: "paused",
+    },
+  },
+}))
+
+export const shootingStar = style({
+  position: "absolute",
+  top: "18%",
+  left: "62%",
+  width: "110px",
+  height: "2px",
+  borderRadius: "2px",
+  backgroundImage:
+    "linear-gradient(90deg, rgba(255,255,255,0.9), transparent)",
+  boxShadow: "0 0 6px rgba(255,255,255,0.3)",
+  opacity: 0,
+  animation: `${shoot} 16s linear infinite`,
+  animationDelay: "4s",
+  "@media": {
+    "(prefers-reduced-motion: reduce)": {
+      display: "none",
     },
   },
 })

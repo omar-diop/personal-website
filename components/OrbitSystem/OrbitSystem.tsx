@@ -12,13 +12,17 @@ export function OrbitSystem() {
     <div className={style.background}>
       <div className={style.scene}>
         <div className={style.system}>
+          <div className={style.sunGlow} />
           <div className={style.sun} />
           {(Object.keys(verticals) as OrbitKey[]).map((key) => (
             <div key={key} className={style.orbit[key]}>
+              <span className={style.trail[key]} />
               <div className={style.planetAnchor}>
                 <div className={style.planet[key]}>
-                  <span className={style.dot[key]} />
-                  <span className={style.label[key]}>{verticals[key]}</span>
+                  <span className={style.depth[key]}>
+                    <span className={style.dot[key]} />
+                    <span className={style.label[key]}>{verticals[key]}</span>
+                  </span>
                 </div>
               </div>
             </div>

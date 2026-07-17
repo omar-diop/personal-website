@@ -15,6 +15,23 @@ const counterSpin = keyframes({
   "100%": { transform: `rotateZ(-360deg) rotateX(-${tilt}deg)` },
 })
 
+// Fakes near/far depth: the planet starts at the left of its orbit and
+// spins clockwise, so it is farthest (top of the ellipse) at 25% of the
+// period and nearest (bottom) at 75%.
+const depthCycle = keyframes({
+  "0%": { transform: "scale(0.9)", opacity: 0.8 },
+  "25%": { transform: "scale(0.72)", opacity: 0.5 },
+  "50%": { transform: "scale(0.9)", opacity: 0.8 },
+  "75%": { transform: "scale(1.08)", opacity: 1 },
+  "100%": { transform: "scale(0.9)", opacity: 0.8 },
+})
+
+const pulse = keyframes({
+  "0%": { transform: `rotateX(-${tilt}deg) scale(1)`, opacity: 0.6 },
+  "50%": { transform: `rotateX(-${tilt}deg) scale(1.2)`, opacity: 1 },
+  "100%": { transform: `rotateX(-${tilt}deg) scale(1)`, opacity: 0.6 },
+})
+
 // Theme accent colors as plain hex so we can derive alpha glows,
 // which CSS variables from the theme contract don't allow.
 const orbits = {
@@ -97,7 +114,25 @@ export const sun = style({
   transform: `rotateX(-${tilt}deg)`,
   backgroundImage: "linear-gradient(135deg, rgba(0,227,169,0.9), #0086DE)",
   boxShadow:
-    "0 0 40px 8px rgba(0,227,169,0.35), 0 0 100px 35px rgba(0,134,222,0.2)",
+    "0 0 40px 8px rgba(0,227,169,0.28), 0 0 100px 35px rgba(0,134,222,0.15)",
+})
+
+export const sunGlow = style({
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  width: "150px",
+  height: "150px",
+  margin: "-75px 0 0 -75px",
+  borderRadius: "50%",
+  backgroundImage:
+    "radial-gradient(circle, rgba(0,227,169,0.3), rgba(0,134,222,0.12) 55%, transparent 72%)",
+  animation: `${pulse} 5s ease-in-out infinite`,
+  "@media": {
+    "(prefers-reduced-motion: reduce)": {
+      animationPlayState: "paused",
+    },
+  },
 })
 
 export const orbit = styleVariants(orbits, (o) => ({
@@ -120,6 +155,19 @@ export const orbit = styleVariants(orbits, (o) => ({
   },
 }))
 
+// Rotates together with the orbit: the colored arc ends where the
+// planet sits (left of the ring, 270deg in conic terms) and fades out
+// over the quarter turn it just travelled.
+export const trail = styleVariants(orbits, (o) => ({
+  position: "absolute",
+  inset: "-1px",
+  borderRadius: "50%",
+  backgroundImage: `conic-gradient(from 180deg, ${o.color}00 0deg, ${o.color}80 90deg, transparent 90deg)`,
+  WebkitMask:
+    "radial-gradient(closest-side, transparent calc(100% - 2.5px), #000 calc(100% - 2px))",
+  mask: "radial-gradient(closest-side, transparent calc(100% - 2.5px), #000 calc(100% - 2px))",
+}))
+
 export const planetAnchor = style({
   position: "absolute",
   top: "50%",
@@ -140,6 +188,17 @@ export const planet = styleVariants(orbits, (o) => ({
   },
 }))
 
+export const depth = styleVariants(orbits, (o) => ({
+  position: "absolute",
+  animation: `${depthCycle} ${o.duration} linear infinite`,
+  animationDelay: o.delay,
+  "@media": {
+    "(prefers-reduced-motion: reduce)": {
+      animationPlayState: "paused",
+    },
+  },
+}))
+
 export const dot = styleVariants(orbits, (o) => ({
   position: "absolute",
   top: `${-o.dot / 2}px`,
@@ -148,7 +207,9 @@ export const dot = styleVariants(orbits, (o) => ({
   height: `${o.dot}px`,
   borderRadius: "50%",
   backgroundColor: o.color,
-  boxShadow: `0 0 14px 3px ${o.color}59`,
+  backgroundImage:
+    "radial-gradient(circle at 32% 32%, rgba(255,255,255,0.55), rgba(255,255,255,0) 55%)",
+  boxShadow: `inset -2px -2px 5px rgba(0,0,0,0.45), 0 0 14px 3px ${o.color}59`,
 }))
 
 export const label = styleVariants(orbits, (o) => ({

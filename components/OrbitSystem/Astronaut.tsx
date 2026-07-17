@@ -20,11 +20,13 @@ export function Astronaut() {
     const delay = firstFlight.current ? 15000 : 45000 + Math.random() * 45000
     const timer = setTimeout(() => {
       firstFlight.current = false
+      // Stay in the empty band above the headline and always drift
+      // upward, so the flight never crosses the hero content.
       setFlight({
         id: Date.now(),
-        top: 8 + Math.random() * 55,
+        top: 10 + Math.random() * 16,
         duration: 30 + Math.random() * 15,
-        driftY: (Math.random() - 0.5) * 200,
+        driftY: -(40 + Math.random() * 110),
       })
     }, delay)
     return () => clearTimeout(timer)

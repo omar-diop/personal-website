@@ -15,6 +15,7 @@ export function OrbitSystem() {
         <span className={style.stars.far} />
         <span className={style.stars.mid} />
         <span className={style.stars.near} />
+        <span className={style.morseStar} />
         <span className={style.shootingStar} />
         <Astronaut />
       </div>

@@ -63,6 +63,36 @@ const starField = (count: number, alpha: number) =>
       `${(rand() * 100).toFixed(1)}vw ${(rand() * 100).toFixed(1)}vh 0 rgba(255,255,255,${alpha})`
   ).join(", ")
 
+// One star blinks S-T-A-Y in Morse code, looping. Murph, are you
+// reading? Each pair is [on, off] in Morse units (dot 1, dash 3,
+// intra-letter gap 1, letter gap 3, word gap 7).
+const morsePairs: Array<[number, number]> = [
+  [1, 1], [1, 1], [1, 3], // S: dot dot dot
+  [3, 3], // T: dash
+  [1, 1], [3, 3], // A: dot dash
+  [3, 1], [1, 1], [3, 1], [3, 7], // Y: dash dot dash dash
+]
+
+const morseTotal = morsePairs.reduce((sum, [on, off]) => sum + on + off, 0)
+
+const stayFrames: Record<string, { opacity: number }> = {
+  "0%": { opacity: 0.15 },
+  "100%": { opacity: 0.15 },
+}
+{
+  const pct = (u: number) => `${((u / morseTotal) * 100).toFixed(2)}%`
+  let t = 0
+  for (const [on, off] of morsePairs) {
+    if (t > 0) stayFrames[pct(t - 0.1)] = { opacity: 0.15 }
+    stayFrames[pct(t)] = { opacity: 1 }
+    stayFrames[pct(t + on)] = { opacity: 1 }
+    stayFrames[pct(t + on + 0.1)] = { opacity: 0.15 }
+    t += on + off
+  }
+}
+
+const stay = keyframes(stayFrames)
+
 const starLayers = {
   far: { count: 60, size: 1, alpha: 0.4, duration: "9s", delay: "0s" },
   mid: { count: 25, size: 2, alpha: 0.5, duration: "6s", delay: "-2s" },
@@ -146,6 +176,25 @@ export const stars = styleVariants(starLayers, (l) => ({
     },
   },
 }))
+
+export const morseStar = style({
+  position: "absolute",
+  top: "15%",
+  left: "13%",
+  width: "3px",
+  height: "3px",
+  borderRadius: "50%",
+  backgroundColor: "#ffffff",
+  boxShadow: "0 0 8px 2px rgba(255,255,255,0.45)",
+  opacity: 0.15,
+  // ~12.6s per loop with a 0.3s Morse unit
+  animation: `${stay} ${morseTotal * 0.3}s linear infinite`,
+  "@media": {
+    "(prefers-reduced-motion: reduce)": {
+      animationPlayState: "paused",
+    },
+  },
+})
 
 export const shootingStar = style({
   position: "absolute",

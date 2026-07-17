@@ -8,11 +8,11 @@
     "tags": ["AWS", "UX", "Product", "Serverless", "DynamoDB"]
   },
   {
-    "title": "Ads GPT: un'estensione Chrome per generare annunci pubblicitari con OpenAI",
-    "description": "Come utilizzare l'API di OpenAI per creare una Chrome Extension che genera testi per Facebook ADS.",
-    "imageUrl": "https://dgdft8ck5n9om.cloudfront.net/ads-gpt.png",
-    "link": "https://medium.com/@omardiop/ads-gpt-unestensione-chrome-per-generare-annunci-pubblicitari-con-openai-dd2cb5466d6e",
-    "type": "Blog post",
-    "tags": ["OpenAI", "Chrome Extension", "Javascript", "API", "Advertisement"]
+    "title": "The Builders Log: Product Engineering per costruire prodotti che gli utenti usano realmente",
+    "description": "La mia newsletter su Substack: decisioni tecniche, errori e scelte di architettura dal lavoro quotidiano di un Product Engineer. Il dietro le quinte di come si costruiscono prodotti che gli utenti usano davvero.",
+    "imageUrl": "https://dgdft8ck5n9om.cloudfront.net/builders-log-og.png",
+    "link": "https://builderslog.substack.com",
+    "type": "Newsletter",
+    "tags": ["Product Engineering", "Engineering", "Product", "Career", "Newsletter"]
   }
 ]

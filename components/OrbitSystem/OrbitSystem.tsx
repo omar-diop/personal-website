@@ -1,5 +1,6 @@
 import * as style from "./orbitSystem.css"
 import type { OrbitKey } from "./orbitSystem.css"
+import { Astronaut } from "./Astronaut"
 
 const verticals: Record<OrbitKey, string> = {
   engineering: "Engineering",
@@ -14,6 +15,7 @@ export function OrbitSystem() {
       <span className={style.stars.mid} />
       <span className={style.stars.near} />
       <span className={style.shootingStar} />
+      <Astronaut />
       <div className={style.scene}>
         <div className={style.system}>
           <div className={style.sunGlow} />

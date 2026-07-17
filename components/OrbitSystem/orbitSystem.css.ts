@@ -107,13 +107,26 @@ export const background = style({
   width: "100%",
   height: "100%",
   zIndex: -1,
-  overflow: "hidden",
   "@media": {
     "screen and (max-width:576px)": {
       justifyContent: "center",
       alignItems: "flex-start",
     },
   },
+})
+
+// Breaks out of the page container to span the real viewport width, so
+// stars reach the screen edges and the astronaut enters/exits from
+// them instead of from the title container. Relies on the global
+// overflow-x: hidden to avoid a horizontal scrollbar.
+export const spaceLayer = style({
+  position: "absolute",
+  top: 0,
+  left: "50%",
+  width: "100vw",
+  height: "100%",
+  marginLeft: "-50vw",
+  overflow: "hidden",
 })
 
 // Invisible 1-star element: the whole field lives in its box-shadow.

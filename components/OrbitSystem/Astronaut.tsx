@@ -93,26 +93,19 @@ export function Astronaut() {
           fill="#DDE2E8"
           transform="rotate(-14 38.5 50.5)"
         />
-        {/* left arm, tucked */}
-        <rect
-          x="19"
-          y="27"
-          width="7"
-          height="15"
-          rx="3.5"
-          fill="#DDE2E8"
-          transform="rotate(24 22.5 30)"
-        />
-        {/* right arm, raised to wave */}
-        <rect
-          x="41"
-          y="13"
-          width="7"
-          height="15"
-          rx="3.5"
-          fill="#DDE2E8"
-          transform="rotate(145 44.5 20)"
-        />
+        {/* arms: each group is translated onto its shoulder joint */}
+        <g transform="translate(23.5 29.5)">
+          <g className={style.armLeft}>
+            <rect x="-3.5" y="-2.5" width="7" height="16" rx="3.5" fill="#DDE2E8" />
+            <circle cx="0" cy="13.5" r="3.4" fill="#C4CAD3" />
+          </g>
+        </g>
+        <g transform="translate(40.5 29.5)">
+          <g className={saluting ? style.armRightWaving : style.armRight}>
+            <rect x="-3.5" y="-2.5" width="7" height="16" rx="3.5" fill="#DDE2E8" />
+            <circle cx="0" cy="13.5" r="3.4" fill="#C4CAD3" />
+          </g>
+        </g>
         {/* torso */}
         <rect x="22" y="25" width="20" height="23" rx="7" fill="#F4F6F8" />
         {/* chest panel */}

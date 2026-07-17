@@ -20,13 +20,17 @@ export function Astronaut() {
     const delay = firstFlight.current ? 15000 : 45000 + Math.random() * 45000
     const timer = setTimeout(() => {
       firstFlight.current = false
-      // Stay in the empty band above the headline and always drift
-      // upward, so the flight never crosses the hero content.
+      // Keep the flight in empty space: on desktop the band above the
+      // headline, drifting upward; on mobile (where the orbit scene
+      // fills the top) the band below the call to action.
+      const mobile = window.matchMedia("(max-width: 576px)").matches
       setFlight({
         id: Date.now(),
-        top: 10 + Math.random() * 16,
-        duration: 30 + Math.random() * 15,
-        driftY: -(40 + Math.random() * 110),
+        top: mobile ? 68 + Math.random() * 16 : 10 + Math.random() * 16,
+        duration: mobile ? 18 + Math.random() * 10 : 30 + Math.random() * 15,
+        driftY: mobile
+          ? (Math.random() - 0.5) * 80
+          : -(40 + Math.random() * 110),
       })
     }, delay)
     return () => clearTimeout(timer)

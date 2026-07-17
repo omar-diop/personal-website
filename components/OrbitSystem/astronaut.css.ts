@@ -1,4 +1,4 @@
-import { style, keyframes } from "@vanilla-extract/css"
+import { style, styleVariants, keyframes } from "@vanilla-extract/css"
 import { theme } from "../../styles/theme.css"
 
 // Fades in/out at the ends so the clipped entry and exit at the hero
@@ -66,9 +66,27 @@ export const body = style({
   animation: `${tumble} 16s linear infinite`,
 })
 
-export const bodySaluting = style({
-  animation: `${attention} 0.5s cubic-bezier(0.34, 1.2, 0.64, 1)`,
-  animationFillMode: "forwards",
+// "Gravity is overrated": a springy bounce off an invisible floor,
+// with cartoon squash and stretch.
+const bounce = keyframes({
+  "0%": { transform: "translateY(0) scale(1, 1)" },
+  "15%": { transform: "translateY(10px) scale(1.12, 0.82)" },
+  "35%": { transform: "translateY(-26px) scale(0.94, 1.1)" },
+  "52%": { transform: "translateY(2px) scale(1.08, 0.88)" },
+  "68%": { transform: "translateY(-13px) scale(0.98, 1.04)" },
+  "82%": { transform: "translateY(0) scale(1.04, 0.94)" },
+  "100%": { transform: "translateY(0) scale(1, 1)" },
+})
+
+export const bodyReacting = styleVariants({
+  wave: {
+    animation: `${attention} 0.5s cubic-bezier(0.34, 1.2, 0.64, 1)`,
+    animationFillMode: "forwards",
+  },
+  bounce: {
+    animation: `${bounce} 1.7s ease-in-out`,
+    animationFillMode: "forwards",
+  },
 })
 
 // Arm groups live inside a <g> translated onto the shoulder joint, so

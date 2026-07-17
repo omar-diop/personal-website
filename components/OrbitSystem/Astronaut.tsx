@@ -8,14 +8,20 @@ type Flight = {
   driftY: number
 }
 
-const SaluteDuration = 2800
+const ReactionDuration = 2800
 
-const Phrases = ["> houston, we have a visitor", "> gravity is overrated"]
+type ReactionKind = "wave" | "bounce"
+
+// Each phrase comes with its own move; past the last one he leaves.
+const Reactions: { phrase: string; kind: ReactionKind }[] = [
+  { phrase: "> houston, we have a visitor", kind: "wave" },
+  { phrase: "> gravity is overrated", kind: "bounce" },
+]
 const LeavingPhrase = "> ok, ok... I'm going"
 
 export function Astronaut() {
   const [flight, setFlight] = useState<Flight | null>(null)
-  const [saluting, setSaluting] = useState(false)
+  const [reaction, setReaction] = useState<ReactionKind | null>(null)
   const [leaving, setLeaving] = useState(false)
   const [clicks, setClicks] = useState(0)
   const [bubble, setBubble] = useState<string | null>(null)
@@ -58,31 +64,30 @@ export function Astronaut() {
   const endFlight = () => {
     setFlight(null)
     setLeaving(false)
-    setSaluting(false)
+    setReaction(null)
     setBubble(null)
   }
 
   const react = () => {
     if (leaving) return
-    if (clicks >= Phrases.length) {
-      // Third click: he has had enough and storms off.
-      setSaluting(false)
+    const step = Reactions[clicks]
+    if (!step) {
+      // He has had enough and storms off.
+      setReaction(null)
       setBubble(LeavingPhrase)
       setLeaving(true)
       return
     }
     setClicks(clicks + 1)
-    setBubble(Phrases[clicks])
-    if (!saluting) {
-      setSaluting(true)
-      setTimeout(() => setSaluting(false), SaluteDuration)
-    }
+    setBubble(step.phrase)
+    setReaction(step.kind)
+    setTimeout(() => setReaction(null), ReactionDuration)
   }
 
   return (
     <div
       className={`${style.flight} ${
-        saluting || leaving ? style.flightPaused : ""
+        reaction || leaving ? style.flightPaused : ""
       }`}
       style={flightStyle}
       onClick={react}
@@ -91,7 +96,7 @@ export function Astronaut() {
       }}
       aria-hidden="true"
     >
-      {bubble && (saluting || leaving) ? (
+      {bubble && (reaction || leaving) ? (
         <div className={style.bubble}>
           {bubble}
           <span className={style.cursor}>_</span>
@@ -107,7 +112,9 @@ export function Astronaut() {
           viewBox="0 0 64 64"
           width="64"
           height="64"
-          className={`${style.body} ${saluting ? style.bodySaluting : ""}`}
+          className={`${style.body} ${
+            reaction ? style.bodyReacting[reaction] : ""
+          }`}
         >
           <defs>
             <linearGradient id="astro-visor" x1="0" y1="0" x2="1" y2="1">
@@ -151,7 +158,11 @@ export function Astronaut() {
             </g>
           </g>
           <g transform="translate(40.5 29.5)">
-            <g className={saluting ? style.armRightWaving : style.armRight}>
+            <g
+              className={
+                reaction === "wave" ? style.armRightWaving : style.armRight
+              }
+            >
               <rect
                 x="-3.5"
                 y="-2.5"

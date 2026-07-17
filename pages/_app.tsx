@@ -5,6 +5,7 @@ import { useEffect } from "react"
 import type { AppProps } from "next/app"
 
 import { NavBar } from "../components/NavBar"
+import { ConsoleEgg } from "../components/ConsoleEgg"
 import { Footer } from "../components/Footer"
 import { Socials } from "../components/Socials"
 import { Seo } from "../components/Seo"
@@ -31,6 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <TagManager />
       <div className={style.container}>
         <Seo />
+        <ConsoleEgg />
         <NavBar />
         <div id="mainContainer">
           <main className={style.main}>

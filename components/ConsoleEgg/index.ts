@@ -1,0 +1,1 @@
+export { ConsoleEgg } from "./ConsoleEgg"

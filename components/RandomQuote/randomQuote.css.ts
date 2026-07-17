@@ -48,6 +48,7 @@ export const terminal = style({
   display: "flex",
   alignItems: "center",
   marginBottom: "2rem",
+  pointerEvents: "none",
 })
 
 export const symbol = style({

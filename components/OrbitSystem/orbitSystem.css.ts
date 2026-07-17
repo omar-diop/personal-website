@@ -1,4 +1,9 @@
-import { style, styleVariants, keyframes } from "@vanilla-extract/css"
+import {
+  style,
+  styleVariants,
+  keyframes,
+  globalStyle,
+} from "@vanilla-extract/css"
 import { theme } from "../../styles/theme.css"
 
 // Tilt of the whole system: planets must counter-rotate by the same
@@ -60,17 +65,23 @@ const starField = (count: number, alpha: number) =>
   Array.from(
     { length: count },
     () =>
-      `${(rand() * 100).toFixed(1)}vw ${(rand() * 100).toFixed(1)}vh 0 rgba(255,255,255,${alpha})`
+      `${(rand() * 100).toFixed(1)}vw ${(rand() * 100).toFixed(1)}vh 0 rgba(255,255,255,${alpha})`,
   ).join(", ")
 
 // One star blinks S-T-A-Y in Morse code, looping. Murph, are you
 // reading? Each pair is [on, off] in Morse units (dot 1, dash 3,
 // intra-letter gap 1, letter gap 3, word gap 7).
 const morsePairs: Array<[number, number]> = [
-  [1, 1], [1, 1], [1, 3], // S: dot dot dot
+  [1, 1],
+  [1, 1],
+  [1, 3], // S: dot dot dot
   [3, 3], // T: dash
-  [1, 1], [3, 3], // A: dot dash
-  [3, 1], [1, 1], [3, 1], [3, 7], // Y: dash dot dash dash
+  [1, 1],
+  [3, 3], // A: dot dash
+  [3, 1],
+  [1, 1],
+  [3, 1],
+  [3, 7], // Y: dash dot dash dash
 ]
 
 const morseTotal = morsePairs.reduce((sum, [on, off]) => sum + on + off, 0)
@@ -130,19 +141,35 @@ export type OrbitKey = keyof typeof orbits
 export const background = style({
   display: "flex",
   justifyContent: "flex-end",
-  alignItems: "center",
+  alignItems: "flex-start",
   position: "absolute",
   top: 0,
   left: 0,
   width: "100%",
   height: "100%",
   zIndex: -1,
+  // Sit above the vertically-centered hero copy, clear of the nav.
+  paddingTop: "4.5rem",
   "@media": {
+    "screen and (min-width:577px) and (max-width:1100px)": {
+      paddingTop: "5.5rem",
+    },
     "screen and (max-width:576px)": {
       justifyContent: "center",
       alignItems: "flex-start",
+      paddingTop: 0,
     },
   },
+})
+
+// Applied to the root when the hero is scrolled out of the viewport:
+// freezes every descendant animation so the GPU idles. The `*` selector
+// outranks the per-element classes (0,1,1 vs 0,1,0), so it also wins
+// over play-states set by the animation shorthands.
+export const offscreenPaused = style({})
+
+globalStyle(`${offscreenPaused} *`, {
+  animationPlayState: "paused",
 })
 
 // Breaks out of the page container to span the real viewport width, so
@@ -203,8 +230,7 @@ export const shootingStar = style({
   width: "110px",
   height: "2px",
   borderRadius: "2px",
-  backgroundImage:
-    "linear-gradient(90deg, rgba(255,255,255,0.9), transparent)",
+  backgroundImage: "linear-gradient(90deg, rgba(255,255,255,0.9), transparent)",
   boxShadow: "0 0 6px rgba(255,255,255,0.3)",
   opacity: 0,
   animation: `${shoot} 16s linear infinite`,
@@ -220,10 +246,13 @@ export const scene = style({
   position: "relative",
   width: "560px",
   height: "560px",
-  marginRight: "6rem",
+  marginRight: "1rem",
+  marginTop: "0.5rem",
   "@media": {
-    "screen and (max-width:992px)": {
-      marginRight: "2rem",
+    "screen and (min-width:577px) and (max-width:1100px)": {
+      marginRight: "-1rem",
+      transform: "scale(0.72)",
+      transformOrigin: "top right",
     },
     "screen and (max-width:576px)": {
       marginRight: 0,
@@ -238,6 +267,7 @@ export const system = style({
   inset: 0,
   transformStyle: "preserve-3d",
   transform: `rotateX(${tilt}deg)`,
+  pointerEvents: "none",
 })
 
 export const sun = style({
@@ -253,6 +283,7 @@ export const sun = style({
   boxShadow:
     "0 0 40px 8px rgba(0,227,169,0.28), 0 0 100px 35px rgba(0,134,222,0.15)",
   cursor: "pointer",
+  pointerEvents: "auto",
   transition: "transform 1.6s cubic-bezier(0.34, 1.3, 0.64, 1)",
 })
 
@@ -277,6 +308,7 @@ export const sunGlow = style({
   borderRadius: "50%",
   backgroundImage:
     "radial-gradient(circle, rgba(0,227,169,0.3), rgba(0,134,222,0.12) 55%, transparent 72%)",
+  pointerEvents: "none",
   animation: `${pulse} 5s ease-in-out infinite`,
   "@media": {
     "(prefers-reduced-motion: reduce)": {
@@ -297,6 +329,7 @@ export const orbitShell = styleVariants(orbits, (o) => ({
   marginTop: `${-o.size / 2}px`,
   marginLeft: `${-o.size / 2}px`,
   transformStyle: "preserve-3d",
+  pointerEvents: "none",
   // rebirth spring; the collapse easing lives on shellCollapsed
   transition: "transform 1.6s cubic-bezier(0.34, 1.3, 0.64, 1)",
 }))
@@ -379,9 +412,50 @@ export const dot = styleVariants(orbits, (o) => ({
 }))
 
 const shimmer = keyframes({
-  "0%": { opacity: 0.85 },
+  "0%": { opacity: 0.82 },
   "50%": { opacity: 1 },
-  "100%": { opacity: 0.85 },
+  "100%": { opacity: 0.82 },
+})
+
+// Slow spin so the Doppler hot-spot drifts around the photon ring.
+const lensSpin = keyframes({
+  "0%": { transform: "rotate(0deg)" },
+  "100%": { transform: "rotate(360deg)" },
+})
+
+// Accretion disk: breathe in brightness and scale while keeping the tilt.
+const diskPulse = keyframes({
+  "0%": {
+    transform: "rotateX(12deg) rotateZ(-8deg) scaleX(1) scaleY(1)",
+    opacity: 0.78,
+  },
+  "35%": {
+    transform: "rotateX(12deg) rotateZ(-8deg) scaleX(1.04) scaleY(1.18)",
+    opacity: 1,
+  },
+  "70%": {
+    transform: "rotateX(12deg) rotateZ(-8deg) scaleX(0.98) scaleY(0.92)",
+    opacity: 0.85,
+  },
+  "100%": {
+    transform: "rotateX(12deg) rotateZ(-8deg) scaleX(1) scaleY(1)",
+    opacity: 0.78,
+  },
+})
+
+const diskGlowPulse = keyframes({
+  "0%": {
+    transform: "rotateX(12deg) rotateZ(-8deg) scaleX(1) scaleY(1)",
+    opacity: 0.7,
+  },
+  "40%": {
+    transform: "rotateX(12deg) rotateZ(-8deg) scaleX(1.06) scaleY(1.25)",
+    opacity: 1,
+  },
+  "100%": {
+    transform: "rotateX(12deg) rotateZ(-8deg) scaleX(1) scaleY(1)",
+    opacity: 0.7,
+  },
 })
 
 const flashBoom = keyframes({
@@ -395,58 +469,147 @@ const blink = keyframes({
   "100%": { opacity: 1 },
 })
 
-// Gargantua: black event horizon, thin photon ring, a lensing halo and
-// the warm accretion disk crossing edge-on in front.
+// Shared accretion-disk tilt: slight foreshortening so the ellipse
+// reads as a 3D plane, not a flat bar.
+const diskTilt = "rotateX(12deg) rotateZ(-8deg)"
+
+// Soft center fade so the disk melts into the photon ring instead of
+// being cut by a hard circular silhouette.
+const diskBlend =
+  "linear-gradient(90deg, #000 0%, #000 26%, transparent 46%, transparent 54%, #000 74%, #000 100%)"
+
+// Gargantua: soft horizon, photon ring, then the disk fading into it.
 export const gargantua = style({
   position: "absolute",
   inset: 0,
   opacity: 0,
+  transform: "scale(0.35)",
   pointerEvents: "none",
-  transition: "opacity 0.9s ease",
+  transition:
+    "opacity 1.1s ease, transform 1.6s cubic-bezier(0.22, 1.25, 0.36, 1)",
 })
 
 export const gargantuaOn = style({
   opacity: 1,
+  transform: "scale(1)",
 })
 
-export const bhHalo = style({
+export const bhVignette = style({
   position: "absolute",
   top: "50%",
   left: "50%",
-  width: "150px",
-  height: "150px",
-  margin: "-75px 0 0 -75px",
+  width: "640px",
+  height: "640px",
+  margin: "-320px 0 0 -320px",
   borderRadius: "50%",
-  border: "2px solid rgba(255,190,120,0.7)",
-  filter: "blur(1.5px)",
-  boxShadow: "0 0 30px 4px rgba(255,150,60,0.25)",
+  backgroundImage:
+    "radial-gradient(circle, rgba(0,0,0,0.78) 16%, rgba(18,6,2,0.5) 36%, rgba(255,110,30,0.07) 50%, transparent 68%)",
+})
+
+// Soft outer glow of the photon sphere; Doppler-asymmetric.
+export const bhLens = style({
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  width: "178px",
+  height: "178px",
+  margin: "-89px 0 0 -89px",
+  borderRadius: "50%",
+  backgroundImage:
+    "conic-gradient(from 200deg, rgba(255,245,220,0.95), rgba(255,190,120,0.55) 18%, rgba(255,120,40,0.12) 42%, rgba(180,70,20,0.08) 58%, rgba(255,160,70,0.35) 78%, rgba(255,245,220,0.95))",
+  WebkitMask:
+    "radial-gradient(closest-side, transparent calc(100% - 5px), #000 calc(100% - 2.5px))",
+  mask: "radial-gradient(closest-side, transparent calc(100% - 5px), #000 calc(100% - 2.5px))",
+  filter: "blur(1.2px)",
+  animation: `${lensSpin} 28s linear infinite`,
+  "@media": {
+    "(prefers-reduced-motion: reduce)": {
+      animation: `${shimmer} 4s ease-in-out infinite`,
+    },
+  },
+})
+
+// Thin bright photon ring hugging the horizon — the visual signature.
+export const bhPhotonRing = style({
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  width: "156px",
+  height: "156px",
+  margin: "-78px 0 0 -78px",
+  borderRadius: "50%",
+  backgroundImage:
+    "conic-gradient(from 200deg, #FFF8EC, rgba(255,210,150,0.7) 20%, rgba(255,140,50,0.25) 45%, rgba(255,140,50,0.2) 55%, rgba(255,200,130,0.55) 80%, #FFF8EC)",
+  WebkitMask:
+    "radial-gradient(closest-side, transparent calc(100% - 2.2px), #000 calc(100% - 0.8px))",
+  mask: "radial-gradient(closest-side, transparent calc(100% - 2.2px), #000 calc(100% - 0.8px))",
+  filter: "blur(0.6px)",
+  animation: `${lensSpin} 28s linear infinite`,
+  "@media": {
+    "(prefers-reduced-motion: reduce)": {
+      animation: `${shimmer} 4s ease-in-out infinite`,
+    },
+  },
 })
 
 export const bhHorizon = style({
   position: "absolute",
   top: "50%",
   left: "50%",
-  width: "96px",
-  height: "96px",
-  margin: "-48px 0 0 -48px",
+  width: "156px",
+  height: "156px",
+  margin: "-78px 0 0 -78px",
   borderRadius: "50%",
-  backgroundColor: "#000000",
-  boxShadow:
-    "0 0 3px 2px rgba(255,220,180,0.9), 0 0 60px 14px rgba(255,140,50,0.28)",
+  // Soft falloff instead of a hard cookie-cutter edge.
+  backgroundImage:
+    "radial-gradient(circle, #000 0%, #000 58%, rgba(0,0,0,0.85) 72%, rgba(0,0,0,0.35) 86%, transparent 100%)",
+  boxShadow: "0 0 40px 18px rgba(255,120,40,0.1)",
+})
+
+export const bhDiskGlow = style({
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  width: "440px",
+  height: "58px",
+  margin: "-18px 0 0 -220px",
+  borderRadius: "50%",
+  transform: diskTilt,
+  // Doppler beaming: approaching side (right) much brighter.
+  backgroundImage:
+    "linear-gradient(90deg, transparent, rgba(255,110,40,0.18) 14%, rgba(255,160,80,0.35) 32%, rgba(255,210,150,0.5) 48%, rgba(255,240,210,0.7) 62%, rgba(255,255,250,0.55) 74%, rgba(255,200,140,0.25) 88%, transparent)",
+  filter: "blur(9px)",
+  WebkitMask: diskBlend,
+  mask: diskBlend,
+  animation: `${diskGlowPulse} 2.4s ease-in-out infinite`,
+  "@media": {
+    "(prefers-reduced-motion: reduce)": {
+      animation: `${shimmer} 3s ease-in-out infinite`,
+    },
+  },
 })
 
 export const bhDisk = style({
   position: "absolute",
   top: "50%",
   left: "50%",
-  width: "250px",
-  height: "20px",
-  margin: "-10px 0 0 -125px",
+  width: "440px",
+  height: "22px",
+  margin: "-2px 0 0 -220px",
   borderRadius: "50%",
+  transform: diskTilt,
   backgroundImage:
-    "linear-gradient(90deg, transparent, rgba(255,200,140,0.9) 18%, #FFF3E0 50%, rgba(255,200,140,0.9) 82%, transparent)",
-  filter: "blur(1px)",
-  animation: `${shimmer} 3s ease-in-out infinite`,
+    "linear-gradient(90deg, transparent, rgba(255,130,50,0.35) 10%, rgba(255,180,110,0.55) 28%, rgba(255,220,170,0.75) 44%, #FFF8EE 58%, #FFFFFF 70%, rgba(255,230,190,0.65) 82%, rgba(255,160,80,0.25) 92%, transparent)",
+  filter: "blur(1.4px)",
+  WebkitMask: diskBlend,
+  mask: diskBlend,
+  animation: `${diskPulse} 2.4s ease-in-out infinite`,
+  animationDelay: "-0.6s",
+  "@media": {
+    "(prefers-reduced-motion: reduce)": {
+      animation: `${shimmer} 3s ease-in-out infinite`,
+    },
+  },
 })
 
 export const flash = style({
@@ -463,22 +626,16 @@ export const flash = style({
   pointerEvents: "none",
 })
 
-export const statusText = styleVariants(
-  {
-    singularity: { color: "#FFB46B" },
-    reborn: { color: "#00E3A9" },
-  },
-  (v) => ({
-    position: "absolute",
-    top: "calc(50% + 105px)",
-    left: "50%",
-    transform: "translateX(-50%)",
-    fontFamily: theme.fonts.monospace,
-    fontSize: "0.8rem",
-    whiteSpace: "nowrap",
-    color: v.color,
-  })
-)
+export const statusText = style({
+  position: "absolute",
+  top: "calc(50% + 130px)",
+  left: "50%",
+  transform: "translateX(-50%)",
+  fontFamily: theme.fonts.monospace,
+  fontSize: "0.8rem",
+  whiteSpace: "nowrap",
+  color: "#FFB46B",
+})
 
 export const blinkCursor = style({
   animation: `${blink} 1s steps(1) infinite`,

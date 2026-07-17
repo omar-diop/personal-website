@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import * as style from "./orbitSystem.css"
 import type { OrbitKey } from "./orbitSystem.css"
 import { Astronaut } from "./Astronaut"
@@ -27,12 +27,26 @@ const NextPhase: Record<Exclude<Phase, "idle">, Phase> = {
 
 export function OrbitSystem() {
   const [phase, setPhase] = useState<Phase>("idle")
+  const rootRef = useRef<HTMLDivElement>(null)
+  const [offscreen, setOffscreen] = useState(false)
+
+  // Pause every animation while the hero is scrolled out of view, so
+  // the compositor isn't kept busy by a scene nobody can see.
+  useEffect(() => {
+    const node = rootRef.current
+    if (!node) return
+    const observer = new IntersectionObserver(([entry]) => {
+      setOffscreen(!entry.isIntersecting)
+    })
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     if (phase === "idle") return
     const timer = setTimeout(
       () => setPhase(NextPhase[phase]),
-      PhaseDuration[phase]
+      PhaseDuration[phase],
     )
     return () => clearTimeout(timer)
   }, [phase])
@@ -46,7 +60,12 @@ export function OrbitSystem() {
   }
 
   return (
-    <div className={style.background}>
+    <div
+      ref={rootRef}
+      className={`${style.background} ${
+        offscreen ? style.offscreenPaused : ""
+      }`}
+    >
       <div className={style.spaceLayer}>
         <span className={style.stars.far} />
         <span className={style.stars.mid} />
@@ -79,9 +98,7 @@ export function OrbitSystem() {
                   <div className={style.planet[key]}>
                     <span className={style.depth[key]}>
                       <span className={style.dot[key]} />
-                      <span className={style.label[key]}>
-                        {verticals[key]}
-                      </span>
+                      <span className={style.label[key]}>{verticals[key]}</span>
                     </span>
                   </div>
                 </div>
@@ -94,22 +111,17 @@ export function OrbitSystem() {
             phase === "blackhole" ? style.gargantuaOn : ""
           }`}
         >
-          <div className={style.bhHalo} />
+          <div className={style.bhVignette} />
           <div className={style.bhHorizon} />
+          <div className={style.bhLens} />
+          <div className={style.bhPhotonRing} />
+          <div className={style.bhDiskGlow} />
           <div className={style.bhDisk} />
         </div>
         {phase === "reborn" ? <div className={style.flash} /> : null}
-        {phase === "blackhole" || phase === "reborn" ? (
-          <div
-            className={
-              style.statusText[
-                phase === "blackhole" ? "singularity" : "reborn"
-              ]
-            }
-          >
-            {phase === "blackhole"
-              ? "> singularity detected"
-              : "> welcome back"}
+        {phase === "blackhole" ? (
+          <div className={style.statusText}>
+            {"> oops, a singularity happened"}
             <span className={style.blinkCursor}>_</span>
           </div>
         ) : null}

@@ -252,6 +252,19 @@ export const sun = style({
   backgroundImage: "linear-gradient(135deg, rgba(0,227,169,0.9), #0086DE)",
   boxShadow:
     "0 0 40px 8px rgba(0,227,169,0.28), 0 0 100px 35px rgba(0,134,222,0.15)",
+  cursor: "pointer",
+  transition: "transform 1.6s cubic-bezier(0.34, 1.3, 0.64, 1)",
+})
+
+export const sunCollapsed = style({
+  transform: `rotateX(-${tilt}deg) scale(0.03)`,
+  transition: "transform 1.9s cubic-bezier(0.7, -0.1, 1, 0.7)",
+})
+
+export const sunGlowHidden = style({
+  animation: "none",
+  opacity: 0,
+  transition: "opacity 0.9s ease",
 })
 
 export const sunGlow = style({
@@ -272,7 +285,10 @@ export const sunGlow = style({
   },
 })
 
-export const orbit = styleVariants(orbits, (o) => ({
+// The shell owns the collapse/rebirth scale (a transition), the orbit
+// inside owns the spin (an animation): they must live on different
+// elements or they would fight over the same transform.
+export const orbitShell = styleVariants(orbits, (o) => ({
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -280,6 +296,19 @@ export const orbit = styleVariants(orbits, (o) => ({
   height: `${o.size}px`,
   marginTop: `${-o.size / 2}px`,
   marginLeft: `${-o.size / 2}px`,
+  transformStyle: "preserve-3d",
+  // rebirth spring; the collapse easing lives on shellCollapsed
+  transition: "transform 1.6s cubic-bezier(0.34, 1.3, 0.64, 1)",
+}))
+
+export const shellCollapsed = style({
+  transform: "scale(0.04)",
+  transition: "transform 1.9s cubic-bezier(0.7, -0.1, 1, 0.7)",
+})
+
+export const orbit = styleVariants(orbits, (o) => ({
+  position: "absolute",
+  inset: 0,
   borderRadius: "50%",
   border: "1px solid rgba(169,169,169,0.25)",
   transformStyle: "preserve-3d",
@@ -348,6 +377,112 @@ export const dot = styleVariants(orbits, (o) => ({
     "radial-gradient(circle at 32% 32%, rgba(255,255,255,0.55), rgba(255,255,255,0) 55%)",
   boxShadow: `inset -2px -2px 5px rgba(0,0,0,0.45), 0 0 14px 3px ${o.color}59`,
 }))
+
+const shimmer = keyframes({
+  "0%": { opacity: 0.85 },
+  "50%": { opacity: 1 },
+  "100%": { opacity: 0.85 },
+})
+
+const flashBoom = keyframes({
+  "0%": { transform: "scale(0.3)", opacity: 0.95 },
+  "100%": { transform: "scale(9)", opacity: 0 },
+})
+
+const blink = keyframes({
+  "0%": { opacity: 1 },
+  "50%": { opacity: 0 },
+  "100%": { opacity: 1 },
+})
+
+// Gargantua: black event horizon, thin photon ring, a lensing halo and
+// the warm accretion disk crossing edge-on in front.
+export const gargantua = style({
+  position: "absolute",
+  inset: 0,
+  opacity: 0,
+  pointerEvents: "none",
+  transition: "opacity 0.9s ease",
+})
+
+export const gargantuaOn = style({
+  opacity: 1,
+})
+
+export const bhHalo = style({
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  width: "150px",
+  height: "150px",
+  margin: "-75px 0 0 -75px",
+  borderRadius: "50%",
+  border: "2px solid rgba(255,190,120,0.7)",
+  filter: "blur(1.5px)",
+  boxShadow: "0 0 30px 4px rgba(255,150,60,0.25)",
+})
+
+export const bhHorizon = style({
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  width: "96px",
+  height: "96px",
+  margin: "-48px 0 0 -48px",
+  borderRadius: "50%",
+  backgroundColor: "#000000",
+  boxShadow:
+    "0 0 3px 2px rgba(255,220,180,0.9), 0 0 60px 14px rgba(255,140,50,0.28)",
+})
+
+export const bhDisk = style({
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  width: "250px",
+  height: "20px",
+  margin: "-10px 0 0 -125px",
+  borderRadius: "50%",
+  backgroundImage:
+    "linear-gradient(90deg, transparent, rgba(255,200,140,0.9) 18%, #FFF3E0 50%, rgba(255,200,140,0.9) 82%, transparent)",
+  filter: "blur(1px)",
+  animation: `${shimmer} 3s ease-in-out infinite`,
+})
+
+export const flash = style({
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  width: "60px",
+  height: "60px",
+  margin: "-30px 0 0 -30px",
+  borderRadius: "50%",
+  backgroundImage:
+    "radial-gradient(circle, rgba(255,255,255,0.95), rgba(0,227,169,0.4) 60%, transparent 75%)",
+  animation: `${flashBoom} 1s ease-out forwards`,
+  pointerEvents: "none",
+})
+
+export const statusText = styleVariants(
+  {
+    singularity: { color: "#FFB46B" },
+    reborn: { color: "#00E3A9" },
+  },
+  (v) => ({
+    position: "absolute",
+    top: "calc(50% + 105px)",
+    left: "50%",
+    transform: "translateX(-50%)",
+    fontFamily: theme.fonts.monospace,
+    fontSize: "0.8rem",
+    whiteSpace: "nowrap",
+    color: v.color,
+  })
+)
+
+export const blinkCursor = style({
+  animation: `${blink} 1s steps(1) infinite`,
+})
 
 export const label = styleVariants(orbits, (o) => ({
   position: "absolute",

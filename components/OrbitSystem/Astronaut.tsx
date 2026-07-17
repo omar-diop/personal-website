@@ -10,9 +10,15 @@ type Flight = {
 
 const SaluteDuration = 2800
 
+const Phrases = ["> houston, we have a visitor", "> gravity is overrated"]
+const LeavingPhrase = "> ok, ok... I'm going"
+
 export function Astronaut() {
   const [flight, setFlight] = useState<Flight | null>(null)
   const [saluting, setSaluting] = useState(false)
+  const [leaving, setLeaving] = useState(false)
+  const [clicks, setClicks] = useState(0)
+  const [bubble, setBubble] = useState<string | null>(null)
   const firstFlight = useRef(true)
 
   useEffect(() => {
@@ -30,6 +36,7 @@ export function Astronaut() {
       const exitTop = mobile
         ? top + (Math.random() - 0.5) * 8
         : 5 + Math.random() * 6
+      setClicks(0)
       setFlight({
         id: Date.now(),
         top,
@@ -48,93 +55,141 @@ export function Astronaut() {
     ["--drift-y" as string]: `${flight.driftY}px`,
   }
 
-  const salute = () => {
-    if (saluting) return
-    setSaluting(true)
-    setTimeout(() => setSaluting(false), SaluteDuration)
+  const endFlight = () => {
+    setFlight(null)
+    setLeaving(false)
+    setSaluting(false)
+    setBubble(null)
+  }
+
+  const react = () => {
+    if (leaving) return
+    if (clicks >= Phrases.length) {
+      // Third click: he has had enough and storms off.
+      setSaluting(false)
+      setBubble(LeavingPhrase)
+      setLeaving(true)
+      return
+    }
+    setClicks(clicks + 1)
+    setBubble(Phrases[clicks])
+    if (!saluting) {
+      setSaluting(true)
+      setTimeout(() => setSaluting(false), SaluteDuration)
+    }
   }
 
   return (
     <div
-      className={`${style.flight} ${saluting ? style.flightPaused : ""}`}
+      className={`${style.flight} ${
+        saluting || leaving ? style.flightPaused : ""
+      }`}
       style={flightStyle}
-      onClick={salute}
+      onClick={react}
       onAnimationEnd={(e) => {
-        if (e.target === e.currentTarget) setFlight(null)
+        if (e.target === e.currentTarget) endFlight()
       }}
       aria-hidden="true"
     >
-      {saluting ? (
+      {bubble && (saluting || leaving) ? (
         <div className={style.bubble}>
-          {"> houston, we have a visitor"}
+          {bubble}
           <span className={style.cursor}>_</span>
         </div>
       ) : null}
-      <svg
-        viewBox="0 0 64 64"
-        width="64"
-        height="64"
-        className={`${style.body} ${saluting ? style.bodySaluting : ""}`}
+      <div
+        className={leaving ? style.exitDash : undefined}
+        onAnimationEnd={(e) => {
+          if (e.target === e.currentTarget) endFlight()
+        }}
       >
-        <defs>
-          <linearGradient id="astro-visor" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#00E3A9" />
-            <stop offset="1" stopColor="#0086DE" />
-          </linearGradient>
-        </defs>
-        {/* backpack */}
-        <rect x="13" y="21" width="12" height="21" rx="4" fill="#AEB6C0" />
-        {/* legs */}
-        <rect
-          x="25"
-          y="44"
-          width="7"
-          height="15"
-          rx="3.5"
-          fill="#DDE2E8"
-          transform="rotate(10 28.5 51.5)"
-        />
-        <rect
-          x="35"
-          y="43"
-          width="7"
-          height="15"
-          rx="3.5"
-          fill="#DDE2E8"
-          transform="rotate(-14 38.5 50.5)"
-        />
-        {/* arms: each group is translated onto its shoulder joint */}
-        <g transform="translate(23.5 29.5)">
-          <g className={style.armLeft}>
-            <rect x="-3.5" y="-2.5" width="7" height="16" rx="3.5" fill="#DDE2E8" />
-            <circle cx="0" cy="13.5" r="3.4" fill="#C4CAD3" />
+        <svg
+          viewBox="0 0 64 64"
+          width="64"
+          height="64"
+          className={`${style.body} ${saluting ? style.bodySaluting : ""}`}
+        >
+          <defs>
+            <linearGradient id="astro-visor" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stopColor="#00E3A9" />
+              <stop offset="1" stopColor="#0086DE" />
+            </linearGradient>
+          </defs>
+          {/* backpack */}
+          <rect x="13" y="21" width="12" height="21" rx="4" fill="#AEB6C0" />
+          {/* legs */}
+          <rect
+            x="25"
+            y="44"
+            width="7"
+            height="15"
+            rx="3.5"
+            fill="#DDE2E8"
+            transform="rotate(10 28.5 51.5)"
+          />
+          <rect
+            x="35"
+            y="43"
+            width="7"
+            height="15"
+            rx="3.5"
+            fill="#DDE2E8"
+            transform="rotate(-14 38.5 50.5)"
+          />
+          {/* arms: each group is translated onto its shoulder joint */}
+          <g transform="translate(23.5 29.5)">
+            <g className={style.armLeft}>
+              <rect
+                x="-3.5"
+                y="-2.5"
+                width="7"
+                height="16"
+                rx="3.5"
+                fill="#DDE2E8"
+              />
+              <circle cx="0" cy="13.5" r="3.4" fill="#C4CAD3" />
+            </g>
           </g>
-        </g>
-        <g transform="translate(40.5 29.5)">
-          <g className={saluting ? style.armRightWaving : style.armRight}>
-            <rect x="-3.5" y="-2.5" width="7" height="16" rx="3.5" fill="#DDE2E8" />
-            <circle cx="0" cy="13.5" r="3.4" fill="#C4CAD3" />
+          <g transform="translate(40.5 29.5)">
+            <g className={saluting ? style.armRightWaving : style.armRight}>
+              <rect
+                x="-3.5"
+                y="-2.5"
+                width="7"
+                height="16"
+                rx="3.5"
+                fill="#DDE2E8"
+              />
+              <circle cx="0" cy="13.5" r="3.4" fill="#C4CAD3" />
+            </g>
           </g>
-        </g>
-        {/* torso */}
-        <rect x="22" y="25" width="20" height="23" rx="7" fill="#F4F6F8" />
-        {/* chest panel */}
-        <rect x="27" y="31" width="10" height="7" rx="2" fill="#8E97A3" />
-        <circle cx="30" cy="34.5" r="1.4" fill="#00E3A9" />
-        <circle cx="34.5" cy="34.5" r="1.4" fill="#FF703B" />
-        {/* helmet */}
-        <circle cx="32" cy="15" r="11" fill="#F4F6F8" />
-        <rect x="24.5" y="9.5" width="15" height="10.5" rx="5.2" fill="#10151B" />
-        <rect
-          x="26.5"
-          y="11.5"
-          width="6.5"
-          height="3.2"
-          rx="1.6"
-          fill="url(#astro-visor)"
-          opacity="0.85"
-        />
-      </svg>
+          {/* torso */}
+          <rect x="22" y="25" width="20" height="23" rx="7" fill="#F4F6F8" />
+          {/* chest panel */}
+          <rect x="27" y="31" width="10" height="7" rx="2" fill="#8E97A3" />
+          <circle cx="30" cy="34.5" r="1.4" fill="#00E3A9" />
+          <circle cx="34.5" cy="34.5" r="1.4" fill="#FF703B" />
+          {/* helmet */}
+          <circle cx="32" cy="15" r="11" fill="#F4F6F8" />
+          <rect
+            x="24.5"
+            y="9.5"
+            width="15"
+            height="10.5"
+            rx="5.2"
+            fill="#10151B"
+          />
+          <rect
+            x="26.5"
+            y="11.5"
+            width="6.5"
+            height="3.2"
+            rx="1.6"
+            fill="url(#astro-visor)"
+            opacity="0.85"
+          />
+        </svg>
+      </div>
     </div>
   )
 }

@@ -88,6 +88,22 @@ export const armLeft = style({
   transformOrigin: "0px 0px",
 })
 
+// Third click: a short windup, then he tilts head-first and dashes off
+// screen. The delay leaves time to read the bubble; fill-mode "both"
+// holds the resting pose during it.
+const dash = keyframes({
+  "0%": { transform: "translateX(0) rotate(0deg)" },
+  "18%": { transform: "translateX(-18px) rotate(-8deg)" },
+  "30%": { transform: "translateX(6px) rotate(80deg)" },
+  "100%": { transform: "translateX(115vw) rotate(80deg)" },
+})
+
+export const exitDash = style({
+  animation: `${dash} 2.2s cubic-bezier(0.55, 0, 0.85, 0.45)`,
+  animationDelay: "0.9s",
+  animationFillMode: "both",
+})
+
 export const bubble = style({
   position: "absolute",
   bottom: "calc(100% + 10px)",

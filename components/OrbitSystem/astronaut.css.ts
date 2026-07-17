@@ -1,10 +1,15 @@
 import { style, keyframes } from "@vanilla-extract/css"
 import { theme } from "../../styles/theme.css"
 
+// Fades in/out at the ends so the clipped entry and exit at the hero
+// edges are never visible as a sliced astronaut.
 const drift = keyframes({
-  "0%": { transform: "translate(0, 0)" },
+  "0%": { transform: "translate(0, 0)", opacity: 0 },
+  "8%": { opacity: 1 },
+  "92%": { opacity: 1 },
   "100%": {
     transform: "translate(calc(100vw + 240px), var(--drift-y, -40px))",
+    opacity: 0,
   },
 })
 

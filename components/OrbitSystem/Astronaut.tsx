@@ -17,20 +17,24 @@ export function Astronaut() {
 
   useEffect(() => {
     if (flight) return
-    const delay = firstFlight.current ? 15000 : 45000 + Math.random() * 45000
+    const delay = firstFlight.current ? 4000 : 45000 + Math.random() * 45000
     const timer = setTimeout(() => {
       firstFlight.current = false
       // Keep the flight in empty space: on desktop the band above the
-      // headline, drifting upward; on mobile (where the orbit scene
-      // fills the top) the band below the call to action.
+      // headline, drifting up toward an exit quota still inside the
+      // hero; on mobile (where the orbit scene fills the top) the band
+      // below the call to action.
       const mobile = window.matchMedia("(max-width: 576px)").matches
+      const heroHeight = window.innerHeight * (mobile ? 1 : 1.05)
+      const top = mobile ? 68 + Math.random() * 16 : 12 + Math.random() * 14
+      const exitTop = mobile
+        ? top + (Math.random() - 0.5) * 8
+        : 5 + Math.random() * 6
       setFlight({
         id: Date.now(),
-        top: mobile ? 68 + Math.random() * 16 : 10 + Math.random() * 16,
+        top,
         duration: mobile ? 18 + Math.random() * 10 : 30 + Math.random() * 15,
-        driftY: mobile
-          ? (Math.random() - 0.5) * 80
-          : -(40 + Math.random() * 110),
+        driftY: ((exitTop - top) / 100) * heroHeight,
       })
     }, delay)
     return () => clearTimeout(timer)

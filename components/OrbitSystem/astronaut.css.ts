@@ -1,0 +1,142 @@
+import { style, styleVariants, keyframes } from "@vanilla-extract/css"
+import { theme } from "../../styles/theme.css"
+
+// Fades in/out at the ends so the clipped entry and exit at the hero
+// edges are never visible as a sliced astronaut.
+const drift = keyframes({
+  "0%": { transform: "translate(0, 0)", opacity: 0 },
+  "8%": { opacity: 1 },
+  "92%": { opacity: 1 },
+  "100%": {
+    transform: "translate(calc(100vw + 240px), var(--drift-y, -40px))",
+    opacity: 0,
+  },
+})
+
+const tumble = keyframes({
+  "0%": { transform: "rotate(0deg)" },
+  "100%": { transform: "rotate(360deg)" },
+})
+
+// Quick "stand to attention" pop when clicked; the waving is done by
+// the arm itself, not the whole body.
+const attention = keyframes({
+  "0%": { transform: "rotate(0deg) scale(1)" },
+  "40%": { transform: "rotate(-8deg) scale(1.12)" },
+  "100%": { transform: "rotate(0deg) scale(1)" },
+})
+
+const wave = keyframes({
+  "0%": { transform: "rotate(-14deg)" },
+  "20%": { transform: "rotate(-155deg)" },
+  "35%": { transform: "rotate(-125deg)" },
+  "50%": { transform: "rotate(-155deg)" },
+  "65%": { transform: "rotate(-125deg)" },
+  "80%": { transform: "rotate(-155deg)" },
+  "100%": { transform: "rotate(-14deg)" },
+})
+
+const blink = keyframes({
+  "0%": { opacity: 1 },
+  "50%": { opacity: 0 },
+  "100%": { opacity: 1 },
+})
+
+export const flight = style({
+  position: "absolute",
+  left: "-120px",
+  zIndex: 1,
+  cursor: "pointer",
+  animationName: drift,
+  animationTimingFunction: "linear",
+  animationFillMode: "forwards",
+  "@media": {
+    "(prefers-reduced-motion: reduce)": {
+      display: "none",
+    },
+  },
+})
+
+export const flightPaused = style({
+  animationPlayState: "paused",
+})
+
+export const body = style({
+  display: "block",
+  animation: `${tumble} 16s linear infinite`,
+})
+
+// "Gravity is overrated": a springy bounce off an invisible floor,
+// with cartoon squash and stretch.
+const bounce = keyframes({
+  "0%": { transform: "translateY(0) scale(1, 1)" },
+  "15%": { transform: "translateY(10px) scale(1.12, 0.82)" },
+  "35%": { transform: "translateY(-26px) scale(0.94, 1.1)" },
+  "52%": { transform: "translateY(2px) scale(1.08, 0.88)" },
+  "68%": { transform: "translateY(-13px) scale(0.98, 1.04)" },
+  "82%": { transform: "translateY(0) scale(1.04, 0.94)" },
+  "100%": { transform: "translateY(0) scale(1, 1)" },
+})
+
+export const bodyReacting = styleVariants({
+  wave: {
+    animation: `${attention} 0.5s cubic-bezier(0.34, 1.2, 0.64, 1)`,
+    animationFillMode: "forwards",
+  },
+  bounce: {
+    animation: `${bounce} 1.7s ease-in-out`,
+    animationFillMode: "forwards",
+  },
+})
+
+// Arm groups live inside a <g> translated onto the shoulder joint, so
+// rotating about the local 0,0 swings them from the shoulder.
+export const armRight = style({
+  transform: "rotate(-14deg)",
+  transformOrigin: "0px 0px",
+})
+
+export const armRightWaving = style({
+  animation: `${wave} 2.6s ease-in-out`,
+  transformOrigin: "0px 0px",
+})
+
+export const armLeft = style({
+  transform: "rotate(14deg)",
+  transformOrigin: "0px 0px",
+})
+
+// Third click: a short windup, then he tilts head-first and dashes off
+// screen. The delay leaves time to read the bubble; fill-mode "both"
+// holds the resting pose during it.
+const dash = keyframes({
+  "0%": { transform: "translateX(0) rotate(0deg)" },
+  "18%": { transform: "translateX(-18px) rotate(-8deg)" },
+  "30%": { transform: "translateX(6px) rotate(80deg)" },
+  "100%": { transform: "translateX(115vw) rotate(80deg)" },
+})
+
+export const exitDash = style({
+  animation: `${dash} 2.2s cubic-bezier(0.55, 0, 0.85, 0.45)`,
+  animationDelay: "0.9s",
+  animationFillMode: "both",
+})
+
+export const bubble = style({
+  position: "absolute",
+  bottom: "calc(100% + 10px)",
+  left: "50%",
+  transform: "translateX(-50%)",
+  padding: "0.3rem 0.6rem",
+  whiteSpace: "nowrap",
+  backgroundColor: theme.colors.lightBackground,
+  border: "1px solid rgba(0,227,169,0.4)",
+  borderRadius: theme.borderRadius,
+  fontFamily: theme.fonts.monospace,
+  fontSize: "0.75rem",
+  color: theme.colors.primary,
+})
+
+export const cursor = style({
+  animation: `${blink} 1s steps(1) infinite`,
+})

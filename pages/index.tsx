@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { GradientBackground } from "../components/GradientBackground"
+import { OrbitSystem } from "../components/OrbitSystem"
 import { CallToAction } from "../components/CallToAction"
 import { RandomQuote } from "../components/RandomQuote"
 import * as style from "../styles/home.css"
@@ -38,7 +38,7 @@ export default function Home() {
             mode="link"
           />
         </div>
-        <GradientBackground />
+        <OrbitSystem />
       </section>
       <section className={style.section} id="about">
         <div className={style.aboutContainer}>
